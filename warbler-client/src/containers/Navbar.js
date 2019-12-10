@@ -18,6 +18,7 @@ class Navbar extends Component {
           <div className="navbar-header">
             <Link to="/" className="navbar-brand">
               <img src={Logo} alt="Warbler Home" />
+              <h1>Warbler</h1>
               </Link>
             </div>
             {this.props.currentUser.isAuthenticated ? (

@@ -47,3 +47,16 @@ export const postNewMessage = text => (dispatch, getState) => {
       dispatch(addError(err.message));
     });
 }
+
+// This is just for sanity - the arrow function translates to...
+// export const postNewMessage = function(text) {
+//   return function(dispatch, getState) {
+//     let { currentUser } = getState();
+//     const id = currentUser.user.id;
+//     return apiCall('post',`/api/users/${id}/messages`, { text })
+//       .then(res => {})
+//       .catch(err => {
+//         dispatch(addError(err.message));
+//       });
+//     }
+// }

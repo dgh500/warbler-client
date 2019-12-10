@@ -8,6 +8,12 @@ body {
   margin-bottom: 1rem;
 }
 
+.navbar h1 {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+}
+
 .navbar a {
   font-weight: bold;
   color: white;
@@ -84,4 +90,16 @@ a.btn.btn-danger:hover {
 
 .navbar-header {
 margin: 0 auto;
+}
+
+#userAsideImg {
+  border-radius: 50%;
+}
+aside {
+  min-width: 250px;
+  text-align: center;
+}
+aside h2:before {
+  content: "@";
+  font-size: 1.1rem;
 }

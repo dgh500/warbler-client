@@ -1,5 +1,10 @@
 import axios from 'axios';
 
+/**
+ * Dual purpose function that either sets the token or removes it (if false supplied)
+ * @param {mixed} token - if supplied then sets the headers Authorization to 'Bearer: token' - if false supplied then deletes it
+ * @return {undefined} - At no point do we test the result of this function
+ */
 export function setTokenHeader(token) {
   if(token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -12,8 +17,8 @@ export function setTokenHeader(token) {
  * Generic function for wrapping Axios calls
  * @param {string} method - The HTTP request method - get, post etc
  * @param {string} path - The URL to get/post to
- * @param {object} data - Any data that the AJAX call requires (eg. username/password...)
- * @return Promise;
+ * @param {object} data - Any data that the AJAX call requires (eg. username/password...) - this is very trusting that the warbler-server is well documented..
+ * @return {promise} - resolves to res.data or rejects with an error message
  */
 export function apiCall(method, path, data) {
   return new Promise((resolve, reject) => {
