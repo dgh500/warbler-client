@@ -29,7 +29,7 @@ class MessageForm extends Component {
           value={this.state.message}
           onChange={e => this.setState({ message: e.target.value })}
           />
-          <button className="btn btn-success pull-right">
+          <button className="btn btn-success pull-right mt-2">
             Add My Message
           </button>
       </form>

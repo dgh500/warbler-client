@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 /**
  * Authorisation form - used for both login and signup
  * If props.signUp is supplied (truthy) then shows full signup form incl username and image URL
@@ -19,6 +20,24 @@ export default class AuthForm extends Component {
   }
 
   /**
+   * Define prop types
+   */
+   static propTypes = {
+     // Page heading - sign up or sign in variant
+     heading:     PropTypes.string,
+     // Form button - sign up or sign in variant
+     buttonText:  PropTypes.string,
+     // Whether on signUp form (else sign in)
+     signUp:      PropTypes.bool,
+     // Errors object - where used?
+     errors:      PropTypes.object,
+     // history object ( see https://reacttraining.com/react-router/web/api/history )
+     history:     PropTypes.object,
+     // the remove error action creator ( defined in src/store/actions/errors.js and passed from Main.js through connect() mapDispatchToProps object )
+     removeError: PropTypes.func
+   };
+
+  /**
    * Allow React to control inputs
    * @param {event} e - synthetic event - https://reactjs.org/docs/events.html
    */
@@ -33,6 +52,10 @@ export default class AuthForm extends Component {
     });
   };
 
+  handleFileChange = (e) => {
+      this.setState({ profileImageUrl: e.target.files[0] });
+  }
+
   /**
    * Handle submit of the login / sign up form and redirect user to home page if successful
    * @param {event} e - synthetic event - https://reactjs.org/docs/events.html
@@ -40,13 +63,21 @@ export default class AuthForm extends Component {
   handleSubmit = (e) => {
     // Prevent page refresh
     e.preventDefault();
+    const formData = new FormData();
+    formData.append('profileImageUrl', this.state.profileImageUrl);
+    formData.append('username', this.state.username);
+    formData.append('password', this.state.password);
+    formData.append('email', this.state.email);
     // Are we signing up or signing in?
     const authType = this.props.signUp ? "signup" : "signin";
-    //
-    this.props.onAuth(authType, this.state).then(() => {
+    // This onAuth is from Main.js connect() mapDispatchToProps function, and is actually the authUser() function in /store/actions/auth.js
+    console.log(this.state);
+    this.props.onAuth(authType, formData).then(() => {
+      // If auth successful then redirect to main homepage "/" route
       this.props.history.push('/');
     })
     .catch(() => {
+      // If authorisation not successful just leave the user where they are - the addError functionality is in auth.js
       return;
     });
   }
@@ -73,7 +104,7 @@ export default class AuthForm extends Component {
           <div className="col-md-6">
             <form onSubmit={this.handleSubmit}>
               <h2>{heading}</h2>
-              // Show Errors if they exist
+              {/* Show Errors if they exist */}
               {errors.message && <div className="alert alert-danger">{errors.message}</div>}
               <label htmlFor="email">Email:</label>
               <input className="form-control" id="email" name="email" type="text"
@@ -84,7 +115,7 @@ export default class AuthForm extends Component {
               <input className="form-control" id="password" name="password" type="password"
                 onChange={this.handleChange} />
 
-              // If signUp form to be rendered then show additional fields
+              {/* If signUp form to be rendered then show additional fields */}
               {signUp && (
                   <div>
                   <label htmlFor="username">Username:</label>
@@ -93,10 +124,10 @@ export default class AuthForm extends Component {
                     value={username} />
 
                   <label htmlFor="image-url">Image URL:</label>
-                  <input className="form-control" id="image-url" name="profileImageUrl" type="text"
-                    onChange={this.handleChange} />
+                  <input className="form-control" id="image-url" name="profileImageUrl" type="file"
+                    onChange={this.handleFileChange} accept="image/*" />
                   </div>
-              )} // End if signUp
+              )} {/* End if signUp */}
               <button type="submit" className="btn btn-primary btn-block btn-lg mt-3">
                 {buttonText}
               </button>

@@ -44,6 +44,7 @@ const Main = props => {
   );
 };
 
+// Transfer currentUser and errors to props
 function mapStateToProps(state) {
   return {
     currentUser: state.currentUser,
@@ -51,4 +52,5 @@ function mapStateToProps(state) {
   };
 }
 
+// Use withRouter to get access to history object, and connect to pass in state as props, and action creators as props
 export default withRouter(connect(mapStateToProps, { authUser, removeError })(Main));
