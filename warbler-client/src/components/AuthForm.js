@@ -64,14 +64,16 @@ export default class AuthForm extends Component {
     // Prevent page refresh
     e.preventDefault();
     const formData = new FormData();
-    formData.append('profileImageUrl', this.state.profileImageUrl);
+    if(this.state.profileImageUrl) {
+      formData.append('profileImageUrl', this.state.profileImageUrl);
+    }
     formData.append('username', this.state.username);
     formData.append('password', this.state.password);
     formData.append('email', this.state.email);
     // Are we signing up or signing in?
     const authType = this.props.signUp ? "signup" : "signin";
     // This onAuth is from Main.js connect() mapDispatchToProps function, and is actually the authUser() function in /store/actions/auth.js
-    console.log(this.state);
+    // console.log(this.state);
     this.props.onAuth(authType, formData).then(() => {
       // If auth successful then redirect to main homepage "/" route
       this.props.history.push('/');
@@ -102,7 +104,7 @@ export default class AuthForm extends Component {
       <div>
         <div className="row justify-content-md-center text-center">
           <div className="col-md-6">
-            <form onSubmit={this.handleSubmit}>
+            <form onSubmit={this.handleSubmit}> 
               <h2>{heading}</h2>
               {/* Show Errors if they exist */}
               {errors.message && <div className="alert alert-danger">{errors.message}</div>}
