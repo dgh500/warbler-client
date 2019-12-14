@@ -20,9 +20,24 @@ class UpdateMessageForm extends Component {
 
   handleEditMessage = e => {
     e.preventDefault();
-    // this.props.postNewMessage(this.state.message);
+    this.props.editMessage(this.state.messageText);
     // this.setState({ message: "" });
-    this.props.history.push('/');
+    // this.props.history.push('/');
+  };
+
+  /**
+   * Allow React to control inputs
+   * @param {event} e - synthetic event - https://reactjs.org/docs/events.html
+   */
+  handleChange = (e) => {
+    this.setState({
+      /*
+      * Use ES6 Computed Property Names
+      * Wrapping an object key in square brackets [] means it gets evaulated, so this function
+      * works on all fields - e.g. <input name="email" ... /> results in the e.name being evaluated to email
+      */
+      [e.target.name]: e.target.value
+    });
   };
 
   render() {
@@ -34,8 +49,9 @@ class UpdateMessageForm extends Component {
         <input
           type="text"
           className="form-control"
+          name="messageText"
           value={this.state.messageText}
-          onChange={e => this.setState({ message: e.target.value })}
+          onChange={this.handleChange}
           />
           <button className="btn btn-success pull-right mt-2">
             Edit Warble

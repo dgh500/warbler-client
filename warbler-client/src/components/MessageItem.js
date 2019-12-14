@@ -7,7 +7,7 @@ const MessageItem = ({ date, profileImageUrl, text, username, removeMessage, isC
   <div>
   <li className="list-group-item">
     <img
-      src={profileImageUrl.length > 1 ? `http://localhost:8081/images/${profileImageUrl}` : DefaultProfileImg}
+      src={profileImageUrl && profileImageUrl.length > 1 ? `http://localhost:8081/images/${profileImageUrl}` : DefaultProfileImg}
       alt={username}
       height="100"
       width="100"

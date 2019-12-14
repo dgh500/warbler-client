@@ -57,9 +57,10 @@ export const fetchOneMessage = message_id => (dispatch, getState) => {
 };
 
 export const editMessage = text => (dispatch, getState) => {
-  let { currentUser } = getState();
+  let { currentUser, messages } = getState();
+  let message_id = messages[0]._id;
   const id = currentUser.user.id;
-  return apiCall('put',`/api/users/${id}/messages/${id}`, { text })
+  return apiCall('put',`/api/users/${id}/messages/${message_id}`, { text })
     .then(res => {})
     .catch(err => {
       dispatch(addError(err.message));
