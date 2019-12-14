@@ -64,9 +64,12 @@ export default class AuthForm extends Component {
     // Prevent page refresh
     e.preventDefault();
     const formData = new FormData();
-    if(this.state.profileImageUrl) {
+    if(this.state.profileImageUrl !== undefined) {
       formData.append('profileImageUrl', this.state.profileImageUrl);
     }
+    // else {
+    //   formData.append('profileImageUrl', './images/default-profile-image.jpg');
+    // }
     formData.append('username', this.state.username);
     formData.append('password', this.state.password);
     formData.append('email', this.state.email);
@@ -104,7 +107,7 @@ export default class AuthForm extends Component {
       <div>
         <div className="row justify-content-md-center text-center">
           <div className="col-md-6">
-            <form onSubmit={this.handleSubmit}> 
+            <form onSubmit={this.handleSubmit} encType="multipart/form-data">
               <h2>{heading}</h2>
               {/* Show Errors if they exist */}
               {errors.message && <div className="alert alert-danger">{errors.message}</div>}
