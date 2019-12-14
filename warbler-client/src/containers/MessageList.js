@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMessages, removeMessage } from '../store/actions/messages';
+import { fetchMessages, removeMessage, editMessage } from '../store/actions/messages';
 import MessageItem from '../components/MessageItem'
 
 class MessageList extends Component {
@@ -18,6 +18,7 @@ class MessageList extends Component {
         username={m.user.username}
         profileImageUrl={m.user.profileImageUrl}
         removeMessage={removeMessage.bind(this, m.user._id, m._id)}
+        messageId={m._id}
         isCorrectUser={currentUser === m.user._id}
         />
     ));
@@ -41,4 +42,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchMessages, removeMessage })(MessageList);
+export default connect(mapStateToProps, { fetchMessages, removeMessage, editMessage })(MessageList);

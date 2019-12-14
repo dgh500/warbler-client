@@ -28,6 +28,9 @@ class Navbar extends Component {
                 New Message</Link>
                 </li>
                 <li>
+                  <Link to={`/profile`}>Edit Profile</Link>
+                </li>
+                <li>
                   <a onClick={this.logout}>Log Out</a>
                 </li>
               </ul>

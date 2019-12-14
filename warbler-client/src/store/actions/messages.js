@@ -1,10 +1,15 @@
 import { apiCall } from '../../services/api';
 import { addError } from './errors';
-import { LOAD_MESSAGES, REMOVE_MESSAGE } from '../actionTypes';
+import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE } from '../actionTypes';
 
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
   messages: messages
+});
+
+export const changeMessage = message => ({
+  type: EDIT_MESSAGE,
+  messageToEdit: message
 });
 
 export const remove = id => ({
@@ -32,6 +37,33 @@ export const fetchMessages = () => {
         dispatch(addError(err.message));
       });
   };
+};
+
+export const fetchOneMessage = message_id => (dispatch, getState) => {
+  console.log('1');
+  // return dispatch => {
+    let { currentUser } = getState();
+    const id = currentUser.user.id;
+     console.log(id);
+    return apiCall('get', `/api/users/${id}/messages/${message_id}`)
+      .then((res) => {
+        console.log(res);
+        dispatch(changeMessage(res));
+      })
+      .catch((err) => {
+        dispatch(addError(err.message));
+      });
+  // };
+};
+
+export const editMessage = text => (dispatch, getState) => {
+  let { currentUser } = getState();
+  const id = currentUser.user.id;
+  return apiCall('put',`/api/users/${id}/messages/${id}`, { text })
+    .then(res => {})
+    .catch(err => {
+      dispatch(addError(err.message));
+    });
 };
 
 export const postNewMessage = text => (dispatch, getState) => {

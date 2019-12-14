@@ -3,6 +3,8 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
+import EditProfile from '../components/EditProfile';
+import UpdateMessageForm from '../components/UpdateMessageForm';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 import withAuth from '../hocs/withAuth';
@@ -36,6 +38,17 @@ const Main = props => {
               heading="Join Warbler Today"
               {...props} /> // This passes the history object through
             )} />
+        <Route exact path="/profile"
+          render={props => (
+            <EditProfile
+              removeError={removeError}
+              errors={errors}
+              user={currentUser.user}
+              {...props} />
+          )} />
+        <Route path="/editMessage/:message_id"
+               component={UpdateMessageForm}
+               />
         <Route path="/users/:id/messages/new"
           component={withAuth(MessageForm)}
           />

@@ -67,16 +67,12 @@ export default class AuthForm extends Component {
     if(this.state.profileImageUrl !== undefined) {
       formData.append('profileImageUrl', this.state.profileImageUrl);
     }
-    // else {
-    //   formData.append('profileImageUrl', './images/default-profile-image.jpg');
-    // }
     formData.append('username', this.state.username);
     formData.append('password', this.state.password);
     formData.append('email', this.state.email);
     // Are we signing up or signing in?
     const authType = this.props.signUp ? "signup" : "signin";
     // This onAuth is from Main.js connect() mapDispatchToProps function, and is actually the authUser() function in /store/actions/auth.js
-    // console.log(this.state);
     this.props.onAuth(authType, formData).then(() => {
       // If auth successful then redirect to main homepage "/" route
       this.props.history.push('/');

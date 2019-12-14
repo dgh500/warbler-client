@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postNewMessage } from '../store/actions/messages';
+import { postNewMessage, editMessage } from '../store/actions/messages';
 
 class MessageForm extends Component {
   constructor(props) {
@@ -40,7 +40,8 @@ class MessageForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    errors: state.errors
+    errors: state.errors,
+
   };
 }
 
