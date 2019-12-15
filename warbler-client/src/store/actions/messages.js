@@ -40,20 +40,18 @@ export const fetchMessages = () => {
 };
 
 export const fetchOneMessage = message_id => (dispatch, getState) => {
-  console.log('1');
-  // return dispatch => {
+  // console.log('1');
     let { currentUser } = getState();
     const id = currentUser.user.id;
-     console.log(id);
+     // console.log(id);
     return apiCall('get', `/api/users/${id}/messages/${message_id}`)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         dispatch(changeMessage(res));
       })
       .catch((err) => {
         dispatch(addError(err.message));
       });
-  // };
 };
 
 export const editMessage = text => (dispatch, getState) => {

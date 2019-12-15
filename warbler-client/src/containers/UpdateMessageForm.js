@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { editMessage, fetchOneMessage } from '../store/actions/messages';
 
+/**
+  * UpdateMessageForm
+  * First uses componentDidMount load the message to edit using the fetchOneMessage function passed in through mapDispatchToProps
+  * Then React takes on the message as this.state.messageText and updates accordingly as the user types.
+  * When the form is submitted handleEditMessage
+  * Redux mapStateToProps - the fetchOneMessage function loads a single message (that matches the URL path) into the store.messages array, which is then populated to this.state.message (as messages[0] - only one in there)
+  * and then when the successful edit is complete, the MessageTimeline component will repopulate the full messsages array (including this edited message)
+  */
 class UpdateMessageForm extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +19,7 @@ class UpdateMessageForm extends Component {
   }
 
   componentDidMount() {
-    console.log('will mount');
+    // this.props.match comes from react-router ( https://www.freecodecamp.org/news/hitchhikers-guide-to-react-router-v4-4b12e369d10/ - good guide)
     this.props.fetchOneMessage(this.props.match.params.message_id)
     .then(res => {
       this.setState({messageText: this.props.message.text})
@@ -20,9 +28,12 @@ class UpdateMessageForm extends Component {
 
   handleEditMessage = e => {
     e.preventDefault();
-    this.props.editMessage(this.state.messageText);
-    // this.setState({ message: "" });
-    // this.props.history.push('/');
+    this.props.editMessage(this.state.messageText)
+    // Reset and send back to home page when message successfully edited
+    .then(() => {
+      this.setState({ message: "" });
+      this.props.history.push('/');
+    });
   };
 
   /**

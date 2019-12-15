@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
 import EditProfile from '../components/EditProfile';
-import UpdateMessageForm from '../components/UpdateMessageForm';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 import withAuth from '../hocs/withAuth';
-import MessageForm from '../containers/MessageForm';
+import MessageForm from './MessageForm';
+import UpdateMessageForm from './UpdateMessageForm';
 
 const Main = props => {
   const { authUser, errors, removeError, currentUser } = props;
