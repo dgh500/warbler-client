@@ -53,7 +53,7 @@ export default class EditProfile extends Component {
   handleSubmit = (e) => {
     // Prevent page refresh
     e.preventDefault();
-
+    
   }
 
   // Render Page
