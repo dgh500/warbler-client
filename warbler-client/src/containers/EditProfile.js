@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { editUser } from '../store/actions/users';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
 
-export default class EditProfile extends Component {
+class EditProfile extends Component {
 
   // Initialise local state
   constructor(props) {
     super(props);
     this.state = {
+      // _id: props.user.id,
       email: props.user.email,
       username: props.user.username,
-      password: '',
+      // password: '',
       profileImageUrl: props.user.profileImageUrl
     };
   }
@@ -51,9 +54,14 @@ export default class EditProfile extends Component {
    * @param {event} e - synthetic event - https://reactjs.org/docs/events.html
    */
   handleSubmit = (e) => {
+    console.log(this.state);
     // Prevent page refresh
     e.preventDefault();
-    
+    let user = {...this.state}
+    this.props.editUser(user)
+    .then(() => {
+      // this.props.history.push('/');
+    });
   }
 
   // Render Page
@@ -81,9 +89,9 @@ export default class EditProfile extends Component {
                 onChange={this.handleChange}
                 value={email} />
 
-              <label htmlFor="password" className="mt-3">Password:</label>
-              <input className="form-control" id="password" name="password" type="password"
-                onChange={this.handleChange} />
+              {/* <label htmlFor="password" className="mt-3">Password:</label>
+               <input className="form-control" id="password" name="password" type="password"
+                 onChange={this.handleChange} />*/}
 
               <div>
               <label htmlFor="username" className="mt-3">Username:</label>
@@ -117,3 +125,5 @@ export default class EditProfile extends Component {
     );
   }
 }
+
+export default connect(null, { editUser })(EditProfile);

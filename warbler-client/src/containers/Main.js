@@ -3,12 +3,12 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
-import EditProfile from '../components/EditProfile';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 import withAuth from '../hocs/withAuth';
 import MessageForm from './MessageForm';
 import UpdateMessageForm from './UpdateMessageForm';
+import EditProfile from './EditProfile';
 
 const Main = props => {
   const { authUser, errors, removeError, currentUser } = props;
