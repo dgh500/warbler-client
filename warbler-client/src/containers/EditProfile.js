@@ -54,11 +54,16 @@ class EditProfile extends Component {
    * @param {event} e - synthetic event - https://reactjs.org/docs/events.html
    */
   handleSubmit = (e) => {
-    console.log(this.state);
     // Prevent page refresh
     e.preventDefault();
-    let user = {...this.state}
-    this.props.editUser(user)
+    // let user = {...this.state}
+    const formData = new FormData();
+    if(this.state.profileImageUrl !== undefined) {
+      formData.append('profileImageUrl', this.state.profileImageUrl);
+    }
+    formData.append('username', this.state.username);
+    formData.append('email', this.state.email);
+    this.props.editUser(formData)
     .then(() => {
       this.props.history.push('/');
     });

@@ -22,8 +22,8 @@ const MessageItem = ({ date, profileImageUrl, text, username, removeMessage, isC
       <p>{text}</p>
       {isCorrectUser && (
         <>
-        <a onClick={removeMessage} className="btn btn-danger">Delete</a>
-          <Link to={`/editMessage/${messageId}`} className="btn btn-warning ml-1">Edit</Link>
+        <a onClick={removeMessage} className="btn btn-sm btn-danger">Delete</a>
+          <Link to={`/editMessage/${messageId}`} className="btn btn-sm btn-warning ml-1">Edit</Link>
         </>
       )}
     </div>
