@@ -60,7 +60,7 @@ class EditProfile extends Component {
     let user = {...this.state}
     this.props.editUser(user)
     .then(() => {
-      // this.props.history.push('/');
+      this.props.history.push('/');
     });
   }
 
