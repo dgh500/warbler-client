@@ -71,12 +71,24 @@ ul.nav.navbar-nav li {
 
 #messages .reply {
   background-color: #e6ecf0;
+  width: 90%;
+  align-self: flex-end;
+}
+#messages .reply i.fa-reply {
+  color: black;
+  margin-right: 10px;
+  transform: rotate(180deg);
+}
+#messages .reply i.fa-times {
+  color: black;
+  margin-left: 10px;
+  cursor: pointer;
 }
 #messages .reply form {
   width: 100%;
 }
 #messages .reply form input {
-  width: 70%;
+  width: 77%;
 }
 #messages .reply .form-control {
   display: inline;
@@ -97,8 +109,8 @@ ul.nav.navbar-nav li {
   cursor: pointer;
 }
 
-a.btn.btn-danger,
-a.btn.btn-danger:hover {
+a.btn.btn-danger,a.btn.btn-success,
+a.btn.btn-danger:hover, a.btn.btn-success:hover {
   color: white;
 }
 

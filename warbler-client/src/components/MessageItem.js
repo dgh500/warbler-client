@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
+import { replyToMessage } from '../store/actions/messages';
 
-export default class MessageItem extends Component {
+class MessageItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,8 +20,9 @@ export default class MessageItem extends Component {
 
   handleReply = (e) => {
     e.preventDefault();
-    // make a POST request to http://localhost:8081/api/users/user_id/messages/message_id/reply
-    // needs req.params.user_id ( the current user ) and message_id ( the parent message ) from ^^ and req.body.text ( the reply's text )
+    this.props.replyToMessage(this.state.replyMessage,this.props.messageId);
+    this.setState({ replyMessage: "", replyMode: false });
+    this.props.history.push('/');
   }
 
   render() {
@@ -56,15 +59,17 @@ export default class MessageItem extends Component {
       {replyMode && (
         <li className="list-group-item reply">
         <form onSubmit={this.handleReply}>
-          ---> <input
+        <i class="fas fa-reply"></i>
+        <input
             type="text"
             className="form-control"
             value={this.state.replyMessage}
             onChange={e => this.setState({ replyMessage: e.target.value })}
             />
-            <button className="btn btn-sm btn-success ml-2">
+            <button className="btn btn-sm btn-success ml-2 mb-1">
               Reply
             </button>
+            <a onClick={this.replyToggle}><i class="fas fa-times"></i></a>
         </form>
         </li>
       )}
@@ -72,3 +77,5 @@ export default class MessageItem extends Component {
     );
   }
 }
+
+export default withRouter(connect(null, { replyToMessage })(MessageItem));
