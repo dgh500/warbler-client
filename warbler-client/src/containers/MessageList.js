@@ -10,7 +10,22 @@ class MessageList extends Component {
 
   render() {
     const { messages, removeMessage, currentUser } = this.props;
-    let messageList = messages.map(m => (
+
+    // Build array of message IDs that are replies
+    let replyIds = [];
+    messages.forEach(m =>
+      m.replies.forEach(r =>
+        replyIds.push(r._id)
+      )
+    )
+
+    // Filter out messages that are ONLY replies
+    let displayMessages = messages.filter(m => {
+      return !replyIds.includes(m._id);
+    });
+
+    // Build JSX for MessageItem
+    let messageList = displayMessages.map(m => (
       <MessageItem
         key={m._id}
         date={m.createAt}
@@ -19,7 +34,9 @@ class MessageList extends Component {
         profileImageUrl={m.user.profileImageUrl}
         removeMessage={removeMessage.bind(this, m.user._id, m._id)}
         messageId={m._id}
+        replies={m.replies}
         isCorrectUser={currentUser === m.user._id}
+        isReply={false}
         />
     ));
     return (

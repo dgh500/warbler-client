@@ -26,40 +26,60 @@ class MessageItem extends Component {
   }
 
   render() {
-    const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, messageId } = this.props;
+    const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply } = this.props;
     const { replyMode } = this.state;
+
+    // Render message replies if they exist
+    let repliesDisplay = null;
+    if(replies.length > 0) {
+      repliesDisplay = replies.map(m => (
+        <MessageItem
+          key={m._id}
+          date={m.createAt}
+          text={m.text}
+          username={m.user.username}
+          profileImageUrl={m.user.profileImageUrl}
+          removeMessage={removeMessage.bind(this, m.user._id, m._id)}
+          messageId={m._id}
+          replies={m.replies}
+          isCorrectUser={currentUser === m.user._id}
+          isReply={true}
+          />
+        ));
+      }
+
+    // Render message
     return (
       <>
-      <div>
-      <li className="list-group-item">
+      <li className={isReply ? "list-group-item reply-item" : "list-group-item"}>
         <img
           src={profileImageUrl && profileImageUrl.length > 1 ? `http://localhost:8081/images/${profileImageUrl}` : DefaultProfileImg}
           alt={username}
           height="100"
           width="100"
           className="timeline-image" />
-        <div className="message-area">
-          <Link to="/">@{username} &nbsp;</Link>
-          <span className="text-muted">
-            <Moment className="text-muted" format="Do MMM YYYY">
-              {date}
-            </Moment>
-          </span>
-          <p>{text}</p>
-          {isCorrectUser && (
-            <>
-            <a onClick={removeMessage} className="btn btn-sm btn-danger">Delete</a>
-              <Link to={`/editMessage/${messageId}`} className="btn btn-sm btn-warning ml-1">Edit</Link>
-            <a onClick={this.replyToggle} className="btn btn-sm btn-success ml-1">Reply</a>
-            </>
-          )}
+          <div className="message-area">
+            <Link to="/">@{username} &nbsp;</Link>
+            <span className="text-muted">
+              <Moment className="text-muted" format="Do MMM YYYY">
+                {date}
+              </Moment>
+            </span>
+            <p>{text}</p>
+            {(isCorrectUser && !isReply) && (
+              <>
+              <a onClick={removeMessage} className="btn btn-sm btn-danger">Delete</a>
+                <Link to={`/editMessage/${messageId}`} className="btn btn-sm btn-warning ml-1">Edit</Link>
+              <a onClick={this.replyToggle} className="btn btn-sm btn-success ml-1">Reply</a>
+              </>
+            )}
           </div>
         </li>
-      </div>
+
       {replyMode && (
         <li className="list-group-item reply">
         <form onSubmit={this.handleReply}>
-        <i class="fas fa-reply"></i>
+        <i className="fas fa-reply"></i>
         <input
             type="text"
             className="form-control"
@@ -69,13 +89,21 @@ class MessageItem extends Component {
             <button className="btn btn-sm btn-success ml-2 mb-1">
               Reply
             </button>
-            <a onClick={this.replyToggle}><i class="fas fa-times"></i></a>
+            <a onClick={this.replyToggle}><i className="fas fa-times"></i></a>
         </form>
         </li>
       )}
+      {repliesDisplay}
       </>
     );
   }
 }
 
-export default withRouter(connect(null, { replyToMessage })(MessageItem));
+function mapStateToProps(state) {
+  return {
+    messages: state.messages,
+    currentUser: state.currentUser.user.id
+  };
+}
+
+export default withRouter(connect(mapStateToProps, { replyToMessage })(MessageItem));

@@ -69,6 +69,11 @@ ul.nav.navbar-nav li {
   transition: 250ms background-color;
 }
 
+#messages .reply-item {
+  width: 95%;
+  align-self: flex-end;
+}
+
 #messages .reply {
   background-color: #e6ecf0;
   width: 90%;
