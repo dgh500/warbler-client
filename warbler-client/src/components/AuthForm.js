@@ -15,7 +15,8 @@ export default class AuthForm extends Component {
       email: '',
       username: '',
       password: '',
-      profileImageUrl: ''
+      profileImageUrl: '',
+      unsubscribe: undefined
     };
   }
 
@@ -83,11 +84,8 @@ export default class AuthForm extends Component {
     });
   }
 
-  // Render Page
-  render() {
-    const { email, username  } = this.state;
-    const { heading, buttonText, signUp, errors, history, removeError } = this.props;
-
+  // add the listen to componentDidMount
+  componentDidMount() {
     /**
      * history.listen will trigger whenever a route changes - in practice this means if you either enter a bad username/password combo or
      * don't fill in a field in signup form (or anything else that triggers an error) then the URL changes.
@@ -95,9 +93,20 @@ export default class AuthForm extends Component {
      * or - signup - you've signed up and therefore auto-logged in and ^^ triggers
      * If neither of these things happens then URL doesn't change and error remains
      */
-    history.listen(() => {
+    const { history, removeError } = this.props;
+    this.setState({ unsubscribe : history.listen(() => {
       removeError();
-    });
+    })});
+  }
+
+  componentWillUnmount() {
+    this.state.unsubscribe();
+  }
+
+  // Render Page
+  render() {
+    const { email, username  } = this.state;
+    const { heading, buttonText, signUp, errors } = this.props;
 
     return (
       <div>

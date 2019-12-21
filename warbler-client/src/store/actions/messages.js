@@ -83,11 +83,9 @@ export const replyToMessage = (text, message_id) => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.id;
   return apiCall('post',`/api/users/${id}/messages/${message_id}/reply`, { text })
-    /*
-     * No dispatch as redirected to '/' in the MessageForm component, which then dispatches loadMessages
-     * so the user sees their message straight away
-     */
-    .then(res => {})
+    .then(res => {
+      dispatch(fetchMessages());
+    })
     .catch(err => {
       dispatch(addError(err.message));
     });

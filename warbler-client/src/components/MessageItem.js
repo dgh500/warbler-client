@@ -70,8 +70,10 @@ class MessageItem extends Component {
               <>
               <a onClick={removeMessage} className="btn btn-sm btn-danger">Delete</a>
                 <Link to={`/editMessage/${messageId}`} className="btn btn-sm btn-warning ml-1">Edit</Link>
-              <a onClick={this.replyToggle} className="btn btn-sm btn-success ml-1">Reply</a>
               </>
+            )}
+            {(!isReply &&
+              <a onClick={this.replyToggle} className="btn btn-sm btn-success ml-1">Reply</a>
             )}
           </div>
         </li>
