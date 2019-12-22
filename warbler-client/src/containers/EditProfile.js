@@ -10,11 +10,10 @@ class EditProfile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // _id: props.user.id,
       email: props.user.email,
       username: props.user.username,
-      // password: '',
-      profileImageUrl: props.user.profileImageUrl
+      profileImageUrl: props.user.profileImageUrl,
+      unsubscribe: undefined
     };
   }
 
@@ -69,17 +68,29 @@ class EditProfile extends Component {
     });
   }
 
+  // add the listen to componentDidMount
+  componentDidMount() {
+    /**
+     * history.listen will trigger whenever a route changes - in practice this means if you either enter a bad username/password combo or
+     * don't fill in a field in signup form (or anything else that triggers an error) then the URL changes.
+     * Specifically - login - you either log in successfully in which case URL changes to "/"
+     * or - signup - you've signed up and therefore auto-logged in and ^^ triggers
+     * If neither of these things happens then URL doesn't change and error remains
+     */
+    const { history, removeError } = this.props;
+    this.setState({ unsubscribe : history.listen(() => {
+      removeError();
+    })});
+  }
+
+  componentWillUnmount() {
+    this.state.unsubscribe();
+  }
+
   // Render Page
   render() {
     const { email, username, profileImageUrl  } = this.state;
-    const { errors, history, removeError } = this.props;
-
-    /**
-     * xx
-     */
-    history.listen(() => {
-      removeError();
-    });
+    const { errors } = this.props;
 
     return (
       <div>

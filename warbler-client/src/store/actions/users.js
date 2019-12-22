@@ -14,7 +14,7 @@ export const editUser = inputUser => (dispatch, getState) => {
       idUser['id'] = idUser['_id'];
       delete idUser['_id'];
       dispatch(setCurrentUser(idUser));
-      fetchMessages();
+      dispatch(fetchMessages());
     })
     .catch(err => {
       dispatch(addError(err.message));

@@ -13,6 +13,10 @@ const UserAside = ({ profileImageUrl, username }) => (
         height="200"
         className="img-thumb"
         id="userAsideImg" />
+        <div className="user-stats">
+          <strong>Posts:</strong> 12<br/>
+          <strong>Replies:</strong> 12
+        </div>
       </div>
     </div>
   </aside>
