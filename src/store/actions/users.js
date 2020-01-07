@@ -2,7 +2,12 @@ import { apiCall } from '../../services/api';
 import { addError } from './errors';
 import { setCurrentUser } from './auth';
 import { fetchMessages } from './messages';
-import { EDIT_USER } from '../actionTypes';
+import { LOAD_STATS } from '../actionTypes';
+
+export const loadUserStats = stats => ({
+  type: LOAD_STATS,
+  stats: stats
+});
 
 export const editUser = inputUser => (dispatch, getState) => {
   let { currentUser } = getState();
@@ -15,6 +20,18 @@ export const editUser = inputUser => (dispatch, getState) => {
       delete idUser['_id'];
       dispatch(setCurrentUser(idUser));
       dispatch(fetchMessages());
+    })
+    .catch(err => {
+      dispatch(addError(err.message));
+    });
+};
+
+export const getUserStats = () => (dispatch, getState) => {
+  let { currentUser } = getState();
+  const id = currentUser.user.id;
+  return apiCall('get',`/api/users/${id}/stats`)
+    .then(userStats => {
+      dispatch(loadUserStats(userStats));
     })
     .catch(err => {
       dispatch(addError(err.message));
