@@ -16,7 +16,10 @@ const Main = props => {
     <div className="container">
       <Switch>
         // Rendering a function which renders the Homepage component - passing props through
-        <Route exact path="/" render={props => ( <Homepage currentUser={currentUser} {...props} /> ) } />
+        <Route exact path="/"
+        render={props => (
+          <Homepage currentUser={currentUser} {...props} />
+        )} />
         <Route exact path="/signin"
           render={props => (
             <AuthForm
