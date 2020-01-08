@@ -28,10 +28,14 @@ class UserAside extends Component {
             height="200"
             className="img-thumb"
             id="userAsideImg" />
+            {this.props.postCount !== undefined ? (
             <div className="user-stats">
-              <strong>Posts:</strong> 12<br/>
+              <strong>Posts:</strong>{this.props.postCount}<br/>
               <strong>Replies:</strong> 12
             </div>
+          ) : (
+            <div>Loading User Stats</div>
+          )}
           </div>
         </div>
       </aside>
@@ -41,9 +45,15 @@ class UserAside extends Component {
 }
 
 function mapStateToProps(state) {
-  return {
-    currentUser: state.currentUser // ,
-//    postCount: state.users.userStats.postCount
+  if(state.users.userStats === undefined) {
+    return {
+      currentUser: state.currentUser
+    }
+  } else {
+    return {
+      currentUser: state.currentUser,
+      postCount: state.users.userStats.postCount
+    }
   }
 }
 

@@ -26,6 +26,7 @@ export const editUser = inputUser => (dispatch, getState) => {
     });
 };
 
+// Gets statistics for the current user - returns object with postCount, replyCount
 export const getUserStats = () => (dispatch, getState) => {
   let { currentUser } = getState();
   const id = currentUser.user.id;
