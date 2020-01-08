@@ -31,7 +31,7 @@ class UserAside extends Component {
             {this.props.postCount !== undefined ? (
             <div className="user-stats">
               <strong>Posts:</strong>{this.props.postCount}<br/>
-              <strong>Replies:</strong> 12
+              <strong>Replies:</strong> {this.props.replyCount}
             </div>
           ) : (
             <div>Loading User Stats</div>
@@ -52,7 +52,8 @@ function mapStateToProps(state) {
   } else {
     return {
       currentUser: state.currentUser,
-      postCount: state.users.userStats.postCount
+      postCount: state.users.userStats.postCount,
+      replyCount: state.users.userStats.replyCount
     }
   }
 }
