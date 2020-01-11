@@ -9,10 +9,6 @@ class MessageList extends Component {
     this.props.fetchMessages();
   }
 
-  refreshMessages = () => {
-    this.props.fetchMessages();
-  }
-
   render() {
     const { messages, removeMessage, currentUser, fetchMessages } = this.props;
 
@@ -47,9 +43,7 @@ class MessageList extends Component {
     return (
       <div className="col-sm-8 p-0 m-0">
         <div>
-        <div className="messageRefresh">
-          (XX New Warbles) <a onClick={this.refreshMessages}>Click to Refresh</a>
-        </div>
+          <MessageRefresh refreshMessages={fetchMessages} />
           <ul className="list-group" id="messages">
             {messageList}
           </ul>
