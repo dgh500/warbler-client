@@ -38,7 +38,9 @@ ul.nav.navbar-nav li {
 }
 
 .onboarding > .navbar {
-  background-image: url("./images/nav-bg.png");
+  /* background-image: url("./images/nav-bg.png"); */
+  background-color: #2e2e2e;
+  color: #c9c9c9;
   background-size: 100%;
 }
 
@@ -133,4 +135,78 @@ aside {
 aside h2:before {
   content: "@";
   font-size: 1.1rem;
+}
+#footer {
+  margin-top: 10px;
+  background-color: #2e2e2e;
+  color: #c9c9c9;
+  padding: 10px;
+  font-size: 0.85rem;
+}
+#footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+}
+#footer a {
+  color: #c9c9c9;
+}
+#footer ul li {
+  margin: 0;
+  padding: 0;
+  display: block;
+  min-width: 40%;
+  border: 0px solid white;
+  float: left;
+}
+#footer strong {
+  color: #456dff;
+  font-size: 1.2rem;
+  display: block;
+}
+#footer hr {
+  margin: 4px auto;
+  padding: 0;
+  border: 0px solid #c9c9c9;
+  height: 1px;
+  background-color: #595959;
+  border-collapse: collapse;
+  width: 80%;
+}
+#footer .topWarble {
+  border: 0px solid white;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  line-height: 1rem;
+}
+#footer .topWarble a {
+  font-weight: bold;
+  color: #a3a3a3;
+}
+#footer .topWarble div {
+  height: 100%;
+  align-self: center;
+}
+#footer .topWarble img {
+  width: 40px;
+  height: 40px;
+  margin: 3px 10px 3px 3px;
+}
+#footer .contactIcon {
+  font-size: 5rem;
+  margin-right: 10px;
+  display: block;
+}
+#footer .contactRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+#footerBase {
+  background-color: #4f4f4f;
+  color: #e0e0e0;
+  padding: 10px;
+  font-size: 0.85rem;
 }

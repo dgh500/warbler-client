@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { configureStore } from '../store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './Navbar';
+import Footer from '../components/Footer';
 import Main from './Main';
 import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 import jwtDecode from 'jwt-decode';
@@ -29,6 +30,7 @@ const App = () => (
       <div className="onboarding">
         <Navbar />
         <Main />
+        <Footer />
       </div>
     </Router>
   </Provider>
