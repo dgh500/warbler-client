@@ -13,7 +13,7 @@ import EditProfile from './EditProfile';
 const Main = props => {
   const { authUser, errors, removeError, currentUser } = props;
   return (
-    <div className="container">
+    <div className="innerContainer">
       <Switch>
         // Rendering a function which renders the Homepage component - passing props through
         <Route exact path="/"

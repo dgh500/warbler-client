@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import MessageTimeline from './MessageTimeline';
 
+
 const Homepage = ({ currentUser }) => {
   if(!currentUser.isAuthenticated) {
     return (

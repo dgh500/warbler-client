@@ -17,7 +17,7 @@ class UserAside extends Component {
   render() {
     const { username, profileImageUrl } = this.props.currentUser.user;
     return (
-      <aside className="col-sm-2">
+      <aside className="col-sm-2 p-0 m-0">
         <div className="panel panel-default">
           <div className="panel-body">
             <h2>{username}</h2>

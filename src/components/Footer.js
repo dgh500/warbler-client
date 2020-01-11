@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
   return (
   <>
-    <div id="footer" className="row">
+    <div id="footer" className="row clearfix">
       <div className="col-12 col-md-4">
         <strong className="text-center text-md-left">Warbler</strong>
         <ul>
@@ -51,14 +51,14 @@ const Footer = () => {
         <div class="contactRow">
         <i class="fas fa-address-card contactIcon"></i>
         <address>
-          Dummy Address<br/>
-          Lorem Ipsum Sit Amet<br/>
-          Dummy Pin<br/>
-          Dummy place<br/>
+          101 Warbler Place<br/>
+          Warbler Upon Warble<br/>
+          Warbleshire<br/>
+          WA2 3IE<br/>
         </address>
         </div>
         Telephone : <a href="tel:+7777777777">+7777777777</a><br/>
-        Email : <a href="mailto:info@dummy.com">info@dummy.com</a>
+        Email : <a href="mailto:info@dummy.com">warble@warbler.com</a>
       </div>
     </div>
     <div id="footerBase" className="row">
