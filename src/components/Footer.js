@@ -17,7 +17,7 @@ const Footer = () => {
       {/* will make this it's own component to bring out the warbles with the most replies */}
         <strong className="text-center text-md-left mt-4 mt-md-0">Top Warbles</strong>
         <div className="topWarble">
-          <div class="text-center topWarbleImg">
+          <div className="text-center topWarbleImg">
             <img src="http://localhost:8081/images/image-1576531150591.jpg" />
           </div>
           <div className="topWarbleBody">
@@ -27,7 +27,7 @@ const Footer = () => {
         </div>
         <hr />
         <div className="topWarble">
-          <div class="text-center">
+          <div className="text-center">
             <img src="http://localhost:8081/images/image-1576531150591.jpg" />
           </div>
           <div className="warbleBody">
@@ -37,7 +37,7 @@ const Footer = () => {
         </div>
         <hr />
         <div className="topWarble">
-          <div class="text-center">
+          <div className="text-center">
             <img src="http://localhost:8081/images/image-1576531150591.jpg" />
           </div>
           <div className="warbleBody">
@@ -48,8 +48,8 @@ const Footer = () => {
       </div>
       <div className="col-12 col-md-4">
         <strong className="text-center text-md-left mt-4 mt-md-0">Contact Warbler</strong><br/>
-        <div class="contactRow">
-        <i class="fas fa-address-card contactIcon"></i>
+        <div className="contactRow">
+        <i className="fas fa-address-card contactIcon"></i>
         <address>
           101 Warbler Place<br/>
           Warbler Upon Warble<br/>

@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchMessages, removeMessage, editMessage } from '../store/actions/messages';
-import MessageItem from '../components/MessageItem'
+import MessageItem from '../components/MessageItem';
+import MessageRefresh from '../components/MessageRefresh';
 
 class MessageList extends Component {
   componentDidMount() {
     this.props.fetchMessages();
   }
 
+  refreshMessages = () => {
+    this.props.fetchMessages();
+  }
+
   render() {
-    const { messages, removeMessage, currentUser } = this.props;
+    const { messages, removeMessage, currentUser, fetchMessages } = this.props;
 
     // Build array of message IDs that are replies
     let replyIds = [];
@@ -42,6 +47,9 @@ class MessageList extends Component {
     return (
       <div className="col-sm-8 p-0 m-0">
         <div>
+        <div className="messageRefresh">
+          (XX New Warbles) <a onClick={this.refreshMessages}>Click to Refresh</a>
+        </div>
           <ul className="list-group" id="messages">
             {messageList}
           </ul>

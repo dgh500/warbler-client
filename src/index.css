@@ -79,7 +79,7 @@ ul.nav.navbar-nav li {
   margin-bottom: -20px;
 }
 #messages {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
 }
 #messages .list-group-item {
@@ -141,6 +141,15 @@ a.btn.btn-danger:hover, a.btn.btn-success:hover {
 
 .navbar-header {
 margin: 0 auto;
+}
+
+.messageRefresh {
+  background-color: #4f4f4f;
+  color: #e0e0e0;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px 0;
 }
 
 #userAsideImg {

@@ -19,7 +19,7 @@ class Navbar extends Component {
           <div className="navbar-header">
             <Link to="/" className="navbar-brand navbar-brand-centered">
               {/*<img src={Logo} alt="Warbler Home" />*/}
-              <h1><i class="fas fa-kiwi-bird"></i> Warbler</h1>
+              <h1><i className="fas fa-kiwi-bird"></i> Warbler</h1>
               </Link>
             </div>
             {this.props.currentUser.isAuthenticated ? (
