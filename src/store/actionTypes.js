@@ -6,3 +6,4 @@ export const REMOVE_MESSAGE   = "REMOVE_MESSAGE";
 export const EDIT_MESSAGE     = "EDIT_MESSAGE";
 export const EDIT_USER        = "EDIT_USER";
 export const LOAD_STATS       = "LOAD_STATS";
+export const MESSAGE_COUNT    = "MESSAGE_COUNT";

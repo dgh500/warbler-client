@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMessages, removeMessage, editMessage } from '../store/actions/messages';
+import { fetchMessages, removeMessage, editMessage, fetchMessageCount } from '../store/actions/messages';
 import MessageItem from '../components/MessageItem';
 import MessageRefresh from '../components/MessageRefresh';
 
 class MessageList extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      messageCount: 0
+    };
+  }
+
   componentDidMount() {
     this.props.fetchMessages();
+    // At this stage after fetchMessages store.messages.length has a value.
+    // Set a timer to check message qty (but not re-render the feed) and check against this count
+    this.props.fetchMessageCount();
   }
 
   render() {
@@ -43,7 +54,7 @@ class MessageList extends Component {
     return (
       <div className="col-sm-8 p-0 m-0">
         <div>
-          <MessageRefresh refreshMessages={fetchMessages} />
+          <MessageRefresh messageCount={this.state.messageCount} refreshMessages={fetchMessages} />
           <ul className="list-group" id="messages">
             {messageList}
           </ul>
@@ -61,4 +72,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchMessages, removeMessage, editMessage })(MessageList);
+export default connect(mapStateToProps, { fetchMessages, removeMessage, editMessage, fetchMessageCount })(MessageList);

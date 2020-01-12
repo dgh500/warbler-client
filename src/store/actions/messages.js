@@ -1,7 +1,7 @@
 import { apiCall } from '../../services/api';
 import { getUserStats } from './users';
 import { addError } from './errors';
-import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE } from '../actionTypes';
+import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT } from '../actionTypes';
 
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
@@ -18,6 +18,11 @@ export const remove = id => ({
   id
 });
 
+export const messageCountUpdate = messageCount => ({
+  type: MESSAGE_COUNT,
+  messageCount
+});
+
 export const removeMessage = (user_id, message_id) => {
   return dispatch => {
     return apiCall(
@@ -28,6 +33,18 @@ export const removeMessage = (user_id, message_id) => {
     dispatch(fetchMessages());
   })
     .catch(err => dispatch(addError(err.message)));
+  }
+}
+
+export const fetchMessageCount = () => {
+  return dispatch => {
+    return apiCall('get', '/api/messages')
+      .then((res) => {
+        dispatch(messageCountUpdate(res.length)); // some new action
+      })
+      .catch((err) => {
+        dispatch(addError(err.message));
+      });
   }
 }
 
