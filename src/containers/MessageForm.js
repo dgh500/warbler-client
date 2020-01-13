@@ -24,8 +24,11 @@ class MessageForm extends Component {
         {this.props.errors.message && (
           <div className="alert alert-danger">{this.props.errors}</div>
         )}
+        <label htmlFor="newMsg">Add Your Warble</label>
+        <p>Max 160 characters, #hashtags included. </p>
         <input
           type="text"
+          id="newMsg"
           className="form-control"
           value={this.state.message}
           onChange={e => this.setState({ message: e.target.value })}
