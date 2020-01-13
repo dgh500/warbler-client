@@ -8,20 +8,26 @@ class MessageList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      messageCount: 0
-    };
   }
 
   componentDidMount() {
     this.props.fetchMessages();
     // At this stage after fetchMessages store.messages.length has a value.
     // Set a timer to check message qty (but not re-render the feed) and check against this count
-    this.props.fetchMessageCount();
+    this.interval = setInterval(() => {
+      this.props.fetchMessageCount();
+    },5000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   render() {
     const { messages, removeMessage, currentUser, fetchMessages } = this.props;
+
+    // Don't go minus if more deleted than added..
+    let newMessages = (this.props.messageCount-this.props.messages.length>0 ? this.props.messageCount-this.props.messages.length : 0);
 
     // Build array of message IDs that are replies
     let replyIds = [];
@@ -54,7 +60,7 @@ class MessageList extends Component {
     return (
       <div className="col-sm-8 p-0 m-0">
         <div>
-          <MessageRefresh messageCount={this.state.messageCount} refreshMessages={fetchMessages} />
+          <MessageRefresh messageCount={newMessages} refreshMessages={fetchMessages} />
           <ul className="list-group" id="messages">
             {messageList}
           </ul>
@@ -67,7 +73,8 @@ class MessageList extends Component {
 
 function mapStateToProps(state) {
   return {
-    messages: state.messages,
+    messages: state.messages.messages,
+    messageCount: state.messages.messageCount,
     currentUser: state.currentUser.user.id
   };
 }

@@ -31,6 +31,7 @@ export const removeMessage = (user_id, message_id) => {
     .then(() => {
     dispatch(remove(message_id));
     dispatch(fetchMessages());
+    dispatch(getUserStats());
   })
     .catch(err => dispatch(addError(err.message)));
   }
@@ -53,6 +54,7 @@ export const fetchMessages = () => {
     return apiCall('get', '/api/messages')
       .then((res) => {
         dispatch(loadMessages(res));
+        dispatch(fetchMessageCount());
         dispatch(getUserStats());
       })
       .catch((err) => {
@@ -78,7 +80,7 @@ export const fetchOneMessage = message_id => (dispatch, getState) => {
 
 export const editMessage = text => (dispatch, getState) => {
   let { currentUser, messages } = getState();
-  let message_id = messages[0]._id;
+  let message_id = messages.messages[0]._id;
   const id = currentUser.user.id;
   return apiCall('put',`/api/users/${id}/messages/${message_id}`, { text })
     .then(res => {})

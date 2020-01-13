@@ -35,7 +35,7 @@ class MessageItem extends Component {
       repliesDisplay = replies.map(m => (
         <MessageItem
           key={m._id}
-          date={m.createAt}
+          date={m.createdAt}
           text={m.text}
           username={m.user.username}
           profileImageUrl={m.user.profileImageUrl}
@@ -61,7 +61,7 @@ class MessageItem extends Component {
           <div className="message-area">
             <Link to="/">@{username} &nbsp;</Link>
             <span className="text-muted">
-              <Moment className="text-muted" format="Do MMM YYYY">
+              <Moment className="text-muted" format="ddd Do MMM [']YY [@] HH[:]ma">
                 {date}
               </Moment>
             </span>

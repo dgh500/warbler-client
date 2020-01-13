@@ -76,7 +76,7 @@ class UpdateMessageForm extends Component {
 function mapStateToProps(state) {
   return {
     errors: state.errors,
-    message: state.messages[0]
+    message: state.messages.messages[0]
   };
 }
 
