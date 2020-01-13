@@ -19,6 +19,7 @@ class MessageForm extends Component {
 
   render() {
     return (
+      <div className="addMsgFormContainer">
       <form onSubmit={this.handleNewMessage}>
         {this.props.errors.message && (
           <div className="alert alert-danger">{this.props.errors}</div>
@@ -33,6 +34,7 @@ class MessageForm extends Component {
             Add My Message
           </button>
       </form>
+      </div>
     );
   }
 

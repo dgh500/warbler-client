@@ -163,6 +163,11 @@ aside h2:before {
   content: "@";
   font-size: 1.1rem;
 }
+
+.addMsgFormContainer {
+  width: 80%;
+}
+
 #footer {
   /* margin-top: 10px; */
   background-color: #2e2e2e;
