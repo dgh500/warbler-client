@@ -48,6 +48,10 @@ class MessageItem extends Component {
         ));
       }
 
+    // Add hashtag links to text TODO
+    let regex = /#[a-zA-Z\d]*/g;
+    let modifiedText = text.replace(regex,'<a href="/filter/hashtag/$&">$&</a>')
+
     // Render message
     return (
       <>
@@ -65,7 +69,7 @@ class MessageItem extends Component {
                 {date}
               </Moment>
             </span>
-            <p>{text}</p>
+            <p dangerouslySetInnerHTML={{__html: modifiedText}}></p>
             {(isCorrectUser && !isReply) && (
               <>
               <a onClick={removeMessage} className="btn btn-sm btn-danger">Delete</a>
