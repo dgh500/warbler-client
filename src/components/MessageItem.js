@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import { Link, withRouter } from 'react-router-dom';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
 import { replyToMessage } from '../store/actions/messages';
+import Hashtag from './Hashtag';
 
 class MessageItem extends Component {
   constructor(props) {
@@ -48,9 +49,14 @@ class MessageItem extends Component {
         ));
       }
 
-    // Add hashtag links to text TODO
+    // Add hashtag links to text
     let regex = /#[a-zA-Z\d]*/g;
-    let modifiedText = text.replace(regex,'<a href="/filter/hashtag/$&">$&</a>')
+    // let modifiedText = text.replace(regex,'<a href="/filter/hashtag/$&">$&</a>');
+    let modifiedText = text.split(' ').map((w) => (
+      (w[0] === '#' ? <Hashtag hashtag={w} /> : <>{w} </>) 
+    ));
+
+    // let modifiedText = text.replace(regex,'<Hashtag hashtag=$& />`)
 
     // Render message
     return (
@@ -69,7 +75,8 @@ class MessageItem extends Component {
                 {date}
               </Moment>
             </span>
-            <p dangerouslySetInnerHTML={{__html: modifiedText}}></p>
+            <p>{modifiedText}</p>
+            { /* }<p dangerouslySetInnerHTML={{__html: modifiedText}}></p> */ }
             {(isCorrectUser && !isReply) && (
               <>
               <a onClick={removeMessage} className="btn btn-sm btn-danger">Delete</a>

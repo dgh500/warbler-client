@@ -1,6 +1,6 @@
-import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT } from '../actionTypes';
+import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT, LOAD_HASHTAGS } from '../actionTypes';
 
-const message = (state = {messages: [], messageCount: 0}, action ) => {
+const message = (state = {messages: [], messageCount: 0, hashtags: []}, action ) => {
   switch(action.type) {
     case LOAD_MESSAGES:
       return {...state, messages: [...action.messages]};
@@ -10,6 +10,8 @@ const message = (state = {messages: [], messageCount: 0}, action ) => {
       return {...state, messages: state.messages.filter(message => message._id !== action.id)};
     case MESSAGE_COUNT:
       return { ...state, messageCount: action.messageCount };
+    case LOAD_HASHTAGS:
+        return { ...state, hashtags: action.hashtags };
     default:
       return state;
   }

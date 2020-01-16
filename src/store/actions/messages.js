@@ -1,7 +1,7 @@
 import { apiCall } from '../../services/api';
 import { getUserStats } from './users';
 import { addError } from './errors';
-import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT } from '../actionTypes';
+import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT, LOAD_HASHTAGS } from '../actionTypes';
 
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
@@ -23,6 +23,23 @@ export const messageCountUpdate = messageCount => ({
   messageCount
 });
 
+export const fetchHashtags = hashtags => ({
+  type: LOAD_HASHTAGS,
+  hashtags
+});
+
+export const fetchHashTags = (user_id) => {
+  return dispatch => {
+    return apiCall('get', `/api/users/${user_id}/messages/hashtags`)
+      .then((res) => {
+        dispatch(fetchHashtags(res));
+      })
+      .catch((err) => {
+        dispatch(addError(err.message));
+      });
+  }
+}
+
 export const removeMessage = (user_id, message_id) => {
   return dispatch => {
     return apiCall(
@@ -41,7 +58,7 @@ export const fetchMessageCount = () => {
   return dispatch => {
     return apiCall('get', '/api/messages')
       .then((res) => {
-        dispatch(messageCountUpdate(res.length)); // some new action
+        dispatch(messageCountUpdate(res.length));
       })
       .catch((err) => {
         dispatch(addError(err.message));

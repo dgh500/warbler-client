@@ -1,6 +1,7 @@
 import React from 'react';
 import MessageList from '../containers/MessageList';
 import UserAside from './UserAside';
+import Hashtags from './Hashtags';
 
 const MessageTimeline = props => {
   return (
@@ -10,9 +11,7 @@ const MessageTimeline = props => {
         username={props.username}
       />
       <MessageList />
-      <div className="col-sm-2 p-0 m-0">
-        Hashtags
-      </div>
+      <Hashtags />
     </div>
   );
 }

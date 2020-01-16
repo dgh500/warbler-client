@@ -16,7 +16,7 @@ class MessageList extends Component {
     // Set a timer to check message qty (but not re-render the feed) and check against this count
     this.interval = setInterval(() => {
       this.props.fetchMessageCount();
-    },5000);
+    },20000);
   }
 
   componentWillUnmount() {
