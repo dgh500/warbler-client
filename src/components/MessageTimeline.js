@@ -5,7 +5,7 @@ import Hashtags from './Hashtags';
 
 const MessageTimeline = props => {
   return (
-    <div className="row flex-nowrap">
+    <div className="row flex-nowrap m-0">
       <UserAside
         profileImageUrl={props.profileImageUrl}
         username={props.username}

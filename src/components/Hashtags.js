@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHashTags } from '../store/actions/messages';
+import { geolocated } from 'react-geolocated';
 import Hashtag from './Hashtag';
 
 class Hashtags extends Component {
@@ -20,11 +21,12 @@ class Hashtags extends Component {
     ));
 
     return (
-      <div className="col-sm-2 p-0 m-0">
-        <h2>Hashtags</h2>
+      <div className="col-sm-2 p-0 m-0" id="hashtags">
+        <h2>From Warbler</h2>
         <h3>Top Warbles</h3>
         {warbleHashtagDisplay}
-        <h3>Top Tweets</h3>
+        <hr/>
+        <h3>From Twitter</h3>
 
       </div>
     );
@@ -48,4 +50,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps,{ fetchHashTags })(Hashtags);
+export default connect(mapStateToProps,{ fetchHashTags })(geolocated({positionOptions: { enableHighAccuracy: false }},Hashtags));

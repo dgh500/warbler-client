@@ -73,6 +73,7 @@ export const fetchMessages = () => {
         dispatch(loadMessages(res));
         dispatch(fetchMessageCount());
         dispatch(getUserStats());
+        dispatch(fetchHashTags());
       })
       .catch((err) => {
         dispatch(addError(err.message));

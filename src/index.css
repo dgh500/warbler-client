@@ -156,7 +156,7 @@ margin: 0 auto;
   border-radius: 50%;
 }
 aside {
-  min-width: 250px;
+  /* min-width: 250px; */
   text-align: center;
 }
 aside h2:before {
@@ -170,6 +170,19 @@ aside h2:before {
 }
 .addMsgFormContainer label {
   font-weight: bold;
+}
+#hashtags {
+  text-align: left;
+  border: 0px solid blue;
+}
+#hashtags hr {
+  margin: 4px auto 4px 0;
+  padding: 0;
+  border: 0px solid #c9c9c9;
+  height: 1px;
+  background-color: #595959;
+  border-collapse: collapse;
+  width: 80%;
 }
 #footer {
   /* margin-top: 10px; */
