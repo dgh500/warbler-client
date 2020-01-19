@@ -50,4 +50,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps,{ fetchHashTags })(geolocated({positionOptions: { enableHighAccuracy: false }},Hashtags));
+////// up to here - add in the react geolocation middleware...
+export default connect(mapStateToProps,{ fetchHashTags })(Hashtags);
