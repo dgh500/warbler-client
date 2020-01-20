@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchHashTags } from '../store/actions/messages';
 import { geolocated } from 'react-geolocated';
 import Hashtag from './Hashtag';
+import RemoteHashtags from './RemoteHashtags';
 
 class Hashtags extends Component {
 
@@ -16,8 +17,10 @@ class Hashtags extends Component {
 
   render() {
 
-    const warbleHashtagDisplay = this.props.warbleHashtags.map((h) => (
-      <Hashtag hashtag={h} />
+    const warbleHashtagDisplay = this.props.warbleHashtags.map((h,i) => (
+      <Hashtag 
+        key={i}
+        hashtag={h} />
     ));
 
     return (
@@ -27,7 +30,7 @@ class Hashtags extends Component {
         {warbleHashtagDisplay}
         <hr/>
         <h3>From Twitter</h3>
-
+        <RemoteHashtags />
       </div>
     );
   }

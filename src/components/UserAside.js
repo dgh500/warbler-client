@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUserStats } from '../store/actions/users';
 

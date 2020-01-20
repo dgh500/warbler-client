@@ -52,8 +52,8 @@ class MessageItem extends Component {
     // Add hashtag links to text
     let regex = /#[a-zA-Z\d]*/g;
     // let modifiedText = text.replace(regex,'<a href="/filter/hashtag/$&">$&</a>');
-    let modifiedText = text.split(' ').map((w) => (
-      (w[0] === '#' ? <Hashtag hashtag={w} /> : <>{w} </>) 
+    let modifiedText = text.split(' ').map((w,i) => (
+      (w[0] === '#' ? <Hashtag hashtag={w} key={i} /> : <span key={i}>{w}</span>)
     ));
 
     // let modifiedText = text.replace(regex,'<Hashtag hashtag=$& />`)

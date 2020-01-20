@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import Logo from '../images/warbler-logo.png';
 import { logout } from '../store/actions/auth';
 
 class Navbar extends Component {

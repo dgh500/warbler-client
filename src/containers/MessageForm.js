@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postNewMessage, editMessage } from '../store/actions/messages';
+import { postNewMessage } from '../store/actions/messages';
 
 class MessageForm extends Component {
   constructor(props) {
