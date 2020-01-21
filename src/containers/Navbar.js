@@ -31,7 +31,7 @@ class Navbar extends Component {
                   <Link to={`/profile`}>Edit Profile</Link>
                 </li>
                 <li>
-                  <a onClick={this.logout}>Log Out</a>
+                  <a onClick={this.logout} href="/">Log Out</a>
                 </li>
               </ul>
             ) : (

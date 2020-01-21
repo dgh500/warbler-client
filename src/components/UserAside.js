@@ -6,9 +6,9 @@ import { getUserStats } from '../store/actions/users';
 
 class UserAside extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     this.props.getUserStats();

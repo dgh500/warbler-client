@@ -49,11 +49,9 @@ class MessageItem extends Component {
         ));
       }
 
-    // Add hashtag links to text
-    let regex = /#[a-zA-Z\d]*/g;
     // let modifiedText = text.replace(regex,'<a href="/filter/hashtag/$&">$&</a>');
     let modifiedText = text.split(' ').map((w,i) => (
-      (w[0] === '#' ? <Hashtag hashtag={w} key={i} /> : <span key={i}>{w}</span>)
+      (w[0] === '#' ? <span><Hashtag hashtag={w} key={i} /> </span> : <span key={i}>{w} </span>)
     ));
 
     // let modifiedText = text.replace(regex,'<Hashtag hashtag=$& />`)
@@ -79,12 +77,12 @@ class MessageItem extends Component {
             { /* }<p dangerouslySetInnerHTML={{__html: modifiedText}}></p> */ }
             {(isCorrectUser && !isReply) && (
               <>
-              <a onClick={removeMessage} className="btn btn-sm btn-danger">Delete</a>
+              <button onClick={removeMessage} className="btn btn-sm btn-danger">Delete</button>
                 <Link to={`/editMessage/${messageId}`} className="btn btn-sm btn-warning ml-1">Edit</Link>
               </>
             )}
             {(!isReply &&
-              <a onClick={this.replyToggle} className="btn btn-sm btn-success ml-1">Reply</a>
+              <button onClick={this.replyToggle} className="btn btn-sm btn-success ml-1">Reply</button>
             )}
           </div>
         </li>
@@ -102,7 +100,7 @@ class MessageItem extends Component {
             <button className="btn btn-sm btn-success ml-2 mb-1">
               Reply
             </button>
-            <a onClick={this.replyToggle}><i className="fas fa-times"></i></a>
+            <button className="link-button" onClick={this.replyToggle}><i className="fas fa-times"></i></button>
         </form>
         </li>
       )}

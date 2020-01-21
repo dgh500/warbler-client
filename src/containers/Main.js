@@ -15,10 +15,13 @@ const Main = props => {
   return (
     <div className="innerContainer">
       <Switch>
-        // Rendering a function which renders the Homepage component - passing props through
+        { `// Rendering a function which renders the Homepage component - passing props through` }
         <Route exact path="/"
         render={props => (
-          <Homepage currentUser={currentUser} {...props} />
+          <Homepage
+            currentUser={currentUser}
+            mode="all"
+            {...props} />
         )} />
         <Route exact path="/signin"
           render={props => (
@@ -49,6 +52,14 @@ const Main = props => {
               user={currentUser.user}
               {...props} />
           )} />
+        <Route path="/messages/filter/hashtag/:hashtag"
+          render={props => (
+            <Homepage
+              currentUser={currentUser}
+              mode="hashtagFilter"
+              search={props.match.params}
+              {...props} />
+            )}/>
         <Route path="/editMessage/:message_id"
                component={UpdateMessageForm}
                />

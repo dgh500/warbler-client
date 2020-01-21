@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHashTags } from '../store/actions/messages';
-import { geolocated } from 'react-geolocated';
+// import { geolocated } from 'react-geolocated';
 import Hashtag from './Hashtag';
 import RemoteHashtags from './RemoteHashtags';
 
 class Hashtags extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     this.props.fetchHashTags(this.props.user_id);
@@ -18,9 +18,9 @@ class Hashtags extends Component {
   render() {
 
     const warbleHashtagDisplay = this.props.warbleHashtags.map((h,i) => (
-      <Hashtag 
+      <span><Hashtag
         key={i}
-        hashtag={h} />
+        hashtag={h} /> </span>
     ));
 
     return (

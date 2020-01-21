@@ -1,9 +1,12 @@
 import React from 'react';
 
 const MessageRefresh = props => {
+  let refreshButtonStyle = {
+    color: "white"
+  }
   return (
     <div className="messageRefresh">
-      ({props.messageCount} New Warbles) <a onClick={props.refreshMessages}>Click to Refresh</a>
+      ({props.messageCount} New Warbles) <button className="link-button" onClick={props.refreshMessages} style={refreshButtonStyle}>Click to Refresh</button>
     </div>
   );
 }

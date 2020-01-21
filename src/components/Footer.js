@@ -7,10 +7,10 @@ const Footer = () => {
       <div className="col-12 col-md-4">
         <strong className="text-center text-md-left">Warbler</strong>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">My Profile</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a href="/">Home</a></li>
+          <li><a href="/">My Profile</a></li>
+          <li><a href="/">About</a></li>
+          <li><a href="/">Contact</a></li>
         </ul>
       </div>
       <div className="col-12 col-md-4">
@@ -18,30 +18,30 @@ const Footer = () => {
         <strong className="text-center text-md-left mt-4 mt-md-0">Top Warbles</strong>
         <div className="topWarble">
           <div className="text-center topWarbleImg">
-            <img src="http://localhost:8081/images/image-1576531150591.jpg" />
+            <img src="http://localhost:8081/images/image-1576531150591.jpg" alt="userName" />
           </div>
           <div className="topWarbleBody">
-            <a href="#">@someone</a>
+            <a href="/">@someone</a>
             <p className="m-0">Bacon ipsum dolor amet corned beef chicken drumstick leberkas, salami bacon ground round landjaeger.</p>
           </div>
         </div>
         <hr />
         <div className="topWarble">
           <div className="text-center">
-            <img src="http://localhost:8081/images/image-1576531150591.jpg" />
+            <img src="http://localhost:8081/images/image-1576531150591.jpg" alt="userName"  />
           </div>
           <div className="warbleBody">
-            <a href="#">@someone</a>
+            <a href="/">@someone</a>
             <p className="m-0">Bacon ipsum dolor amet corned beef chicken drumstick leberkas, salami bacon ground round landjaeger.</p>
           </div>
         </div>
         <hr />
         <div className="topWarble">
           <div className="text-center">
-            <img src="http://localhost:8081/images/image-1576531150591.jpg" />
+            <img src="http://localhost:8081/images/image-1576531150591.jpg" alt="userName"  />
           </div>
           <div className="warbleBody">
-            <a href="#">@someone</a>
+            <a href="/">@someone</a>
             <p className="m-0">Bacon ipsum dolor amet corned beef chicken drumstick leberkas, salami bacon ground round landjaeger.</p>
           </div>
         </div>

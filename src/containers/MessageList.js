@@ -6,13 +6,13 @@ import MessageRefresh from '../components/MessageRefresh';
 
 class MessageList extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
-    this.props.fetchMessages();
-    // At this stage after fetchMessages store.messages.length has a value.
+    const { currentUser, mode, search } = this.props;
+    this.props.fetchMessages(currentUser,mode,search.hashtag);
     // Set a timer to check message qty (but not re-render the feed) and check against this count
     this.interval = setInterval(() => {
       this.props.fetchMessageCount();

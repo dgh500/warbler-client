@@ -6,22 +6,22 @@ import { getTwitterHashtags } from '../store/actions/twitter';
 
 class RemoteHashtags extends Component {
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
-    this.props.getTwitterHashtags();
+    this.props.getTwitterHashtags(30079);
   }
 
   render() {
 
     const hashtagDisplay = this.props.twitterHashtags.map((h,i) => (
-      <Hashtag
+      <span><Hashtag
         key={i}
-        hashtag={h} />
+        hashtag={h} /> </span>
     ));
-    console.log(hashtagDisplay);
+    // console.log(hashtagDisplay);
 
     return (
       <div id="remoteTweets">

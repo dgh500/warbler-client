@@ -66,9 +66,18 @@ export const fetchMessageCount = () => {
   }
 }
 
-export const fetchMessages = () => {
+export const fetchMessages = ( id, mode, q='') => {
+  let url;
+  switch(mode) {
+    case 'hashtagFilter':
+      url = `/api/users/${id}/messages/mode/hashtags/${q}`;
+      break;
+    case 'all':
+    default:
+      url = '/api/messages';
+  }
   return dispatch => {
-    return apiCall('get', '/api/messages')
+    return apiCall('get', url)
       .then((res) => {
         dispatch(loadMessages(res));
         dispatch(fetchMessageCount());

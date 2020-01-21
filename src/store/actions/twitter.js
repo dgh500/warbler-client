@@ -7,8 +7,8 @@ export const loadTwitterHashtags = twitterHashtags => ({
   twitterHashtags: twitterHashtags
 });
 
-export const getTwitterHashtags = () => (dispatch, getState) => {
-  return apiCall('get',`/api/twitter/12334`)
+export const getTwitterHashtags = (location) => (dispatch, getState) => {
+  return apiCall('get',`/api/twitter/${location}`)
     .then(twitterHashtags => {
       dispatch(loadTwitterHashtags(twitterHashtags));
     })
