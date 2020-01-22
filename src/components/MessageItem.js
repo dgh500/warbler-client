@@ -55,7 +55,7 @@ class MessageItem extends Component {
     ));
 
     // let modifiedText = text.replace(regex,'<Hashtag hashtag=$& />`)
-
+    let usernameLink = `/messages/filter/user/${username}`;
     // Render message
     return (
       <>
@@ -67,7 +67,7 @@ class MessageItem extends Component {
           width="100"
           className="timeline-image" />
           <div className="message-area">
-            <Link to="/">@{username} &nbsp;</Link>
+            <Link to={usernameLink}>@{username} &nbsp;</Link>
             <span className="text-muted">
               <Moment className="text-muted" format="ddd Do MMM [']YY [@] HH[:]ma">
                 {date}

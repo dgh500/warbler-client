@@ -53,12 +53,20 @@ const Main = props => {
               user={currentUser.user}
               {...props} />
           )} />
-        <Route exact path="/messages/filter/hashtag/:hashtag"
+        <Route path="/messages/filter/hashtag/:hashtag"
           render={props => (
             <Homepage
               currentUser={currentUser}
               mode="hashtagFilter"
               search={props.match.params.hashtag}
+              {...props} />
+            )}/>
+        <Route path="/messages/filter/user/:user_id"
+          render={props => (
+            <Homepage
+              currentUser={currentUser}
+              mode="userFilter"
+              search={props.match.params.user_id}
               {...props} />
             )}/>
         <Route path="/editMessage/:message_id"

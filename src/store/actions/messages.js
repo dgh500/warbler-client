@@ -72,6 +72,9 @@ export const fetchMessages = ( id, mode, q='') => {
     case 'hashtagFilter':
       url = `/api/users/${id}/messages/mode/hashtags/${q}`;
       break;
+    case 'userFilter':
+      url = `/api/users/${id}/messages/mode/user/${q}`;
+      break;
     case 'all':
     default:
       url = '/api/messages';
