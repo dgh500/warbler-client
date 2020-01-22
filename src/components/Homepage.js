@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import MessageTimeline from './MessageTimeline';
 
 
@@ -28,4 +28,4 @@ const Homepage = ({ currentUser, mode, search }) => {
   );
 };
 
-export default Homepage;
+export default withRouter(Homepage);

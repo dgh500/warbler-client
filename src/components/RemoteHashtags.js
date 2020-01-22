@@ -17,7 +17,7 @@ class RemoteHashtags extends Component {
   render() {
 
     const hashtagDisplay = this.props.twitterHashtags.map((h,i) => (
-      <span><Hashtag
+      <span key={i}><Hashtag
         key={i}
         hashtag={h} /> </span>
     ));

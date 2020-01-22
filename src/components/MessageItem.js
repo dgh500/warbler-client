@@ -51,7 +51,7 @@ class MessageItem extends Component {
 
     // let modifiedText = text.replace(regex,'<a href="/filter/hashtag/$&">$&</a>');
     let modifiedText = text.split(' ').map((w,i) => (
-      (w[0] === '#' ? <span><Hashtag hashtag={w} key={i} /> </span> : <span key={i}>{w} </span>)
+      (w[0] === '#' ? <span key={i}><Hashtag hashtag={w} key={i} /> </span> : <span key={i}>{w} </span>)
     ));
 
     // let modifiedText = text.replace(regex,'<Hashtag hashtag=$& />`)

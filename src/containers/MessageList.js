@@ -1,19 +1,42 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchMessages, removeMessage, editMessage, fetchMessageCount } from '../store/actions/messages';
 import MessageItem from '../components/MessageItem';
 import MessageRefresh from '../components/MessageRefresh';
 
 class MessageList extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchVal: ''
+    }
+  }
 
   componentDidMount() {
+    // console.log('mount');
+
     const { currentUser, mode, search } = this.props;
-    this.props.fetchMessages(currentUser,mode,search.hashtag);
+    this.setState({searchVal: search});
+    this.props.fetchMessages(currentUser,mode,search);
     // Set a timer to check message qty (but not re-render the feed) and check against this count
+    this.interval = setInterval(() => {
+      this.props.fetchMessageCount();
+    },20000);
+  }
+
+  componentDidUpdate() {
+    // console.log('update');
+    const { currentUser, mode, search } = this.props;
+    if(this.state.searchVal !== search) {
+      this.props.fetchMessages(currentUser,mode,search);
+    }
+    if(this.state.searchVal !== search) {
+      this.setState({searchVal: search});
+    }
+
+      // Set a timer to check message qty (but not re-render the feed) and check against this count
     this.interval = setInterval(() => {
       this.props.fetchMessageCount();
     },20000);
@@ -79,4 +102,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, { fetchMessages, removeMessage, editMessage, fetchMessageCount })(MessageList);
+export default withRouter(connect(mapStateToProps, { fetchMessages, removeMessage, editMessage, fetchMessageCount })(MessageList));

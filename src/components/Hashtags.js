@@ -18,7 +18,7 @@ class Hashtags extends Component {
   render() {
 
     const warbleHashtagDisplay = this.props.warbleHashtags.map((h,i) => (
-      <span><Hashtag
+      <span key={i}><Hashtag
         key={i}
         hashtag={h} /> </span>
     ));
