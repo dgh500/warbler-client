@@ -30,7 +30,7 @@ class MessageList extends Component {
     // Set a timer to check message qty (but not re-render the feed) and check against this count
     this.interval = setInterval(() => {
       this.props.fetchMessageCount();
-    },20000);
+    },200000);
   }
 
   // Handles route changes ( eg. new search terms/new mode )
