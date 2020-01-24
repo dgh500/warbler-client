@@ -25,7 +25,6 @@ class Hashtags extends Component {
 
     return (
       <div className="col-sm-2 p-0 m-0" id="hashtags">
-        <h2>From Warbler</h2>
         <h3>Top Warbles</h3>
         {warbleHashtagDisplay}
         <hr/>

@@ -33,13 +33,43 @@ text-decoration: none;
 
 .navbar a {
   font-weight: bold;
-  color: #456dff;
+  color: #ff9900;
 }
 
 .navbar a:hover {
-  color: #456dff;
+  color: #ff9900;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #ff9900;
+  border: 1px solid #ff9900;
+  color: #000;
+  text-shadow: 0 0 0 #ff9900;
+  font-weight: bold;
+}
+
+.btn-primary:hover {
+  background-color: #ff9900;
+  border: 1px solid #ff9900;
+  color: #fff;
+  text-shadow: 0 0 0 #ff9900;
+  font-weight: bold;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+  background-color: #ff9900;
+  border: 1px solid #ff9900;
+  color: #000;
+  text-shadow: 0 0 0 #ff9900;
+  box-shadow: 0 0 0 0.2rem rgba(255,255,255,.5);
+  font-weight: bold;
+}
+
+.btn-primary:focus, .btn-primary:active {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 @media screen and (min-width:768px){
@@ -82,7 +112,7 @@ ul.nav.navbar-nav li {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-image: url("./images/signed-out-home.jpg");
+  background-image: url("./images/kiwi.jpg");
   z-index: -1;
   text-align: center;
   padding: 1rem;
@@ -224,7 +254,7 @@ aside h2:before {
   float: left;
 }
 #footer strong {
-  color: #456dff;
+  color: #ff9900;
   font-size: 1.2rem;
   display: block;
 }
