@@ -70,7 +70,7 @@ export const fetchMessages = ( id, mode, q='') => {
   let url;
   switch(mode) {
     case 'hashtagFilter':
-      url = `/api/users/${id}/messages/mode/hashtags/${q}`;
+      url = `/api/users/${id}/messages?mode=hashtags&q=${q}`;
       break;
     case 'userFilter':
       url = `/api/users/${id}/messages/mode/user/${q}`;
