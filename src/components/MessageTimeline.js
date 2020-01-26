@@ -11,7 +11,7 @@ const MessageTimeline = props => {
         profileImageUrl={props.profileImageUrl}
         username={props.username}
       />
-      <MessageList mode={props.mode} search={props.search} />
+      <MessageList mode={props.mode} search={props.search} displayMode="feed" />
       <Hashtags />
     </div>
   );

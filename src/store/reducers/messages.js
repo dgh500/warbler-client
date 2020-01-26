@@ -1,9 +1,11 @@
-import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT, LOAD_HASHTAGS } from '../actionTypes';
+import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT, LOAD_HASHTAGS, LOAD_FOOTER_MESSAGES } from '../actionTypes';
 
-const message = (state = {messages: [], messageCount: 0, hashtags: []}, action ) => {
+const message = (state = {messages: [], footerMessages: [], messageCount: 0, hashtags: []}, action ) => {
   switch(action.type) {
     case LOAD_MESSAGES:
       return {...state, messages: [...action.messages]};
+    case LOAD_FOOTER_MESSAGES:
+      return {...state, footerMessages: [...action.footerMessages]};
     case EDIT_MESSAGE:
       return {...state, messages: [action.messageToEdit]};
     case REMOVE_MESSAGE:

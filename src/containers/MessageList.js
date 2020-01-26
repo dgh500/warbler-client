@@ -23,43 +23,61 @@ class MessageList extends Component {
 
   // Initiate
   componentDidMount() {
-    const { currentUser, mode, search } = this.props;
+    const { currentUser, mode, search, displayMode } = this.props;
     this.setState({searchVal: search});
-    this.props.fetchMessages(currentUser,mode,search);
+    let orderBy;
+    let orderDir = 'desc';
+    let limit;
+    if(displayMode === 'feed') {
+      orderBy = 'newest';
+      limit = '';
+    } else {
+      orderBy = 'mostReplies';
+      limit = 3;
+    }
+    this.props.fetchMessages(currentUser,mode,search,orderBy,orderDir,limit,displayMode);
 
     // Set a timer to check message qty (but not re-render the feed) and check against this count
-    this.interval = setInterval(() => {
-      this.props.fetchMessageCount();
-    },200000);
+    if(displayMode === 'feed') {
+      this.interval = setInterval(() => {
+        this.props.fetchMessageCount();
+      },2000000);
+    }
   }
 
   // Handles route changes ( eg. new search terms/new mode )
   componentDidUpdate() {
-    const { currentUser, mode, search } = this.props;
-    if(this.state.searchVal !== search) {
-      this.props.fetchMessages(currentUser,mode,search);
-    }
+    const { currentUser, mode, search, displayMode } = this.props;
+    if(displayMode === 'feed') {
+      if(this.state.searchVal !== search) {
+        this.props.fetchMessages(currentUser,mode,search);
+      }
 
-    // Must wrap in conditional to avoid infinite loop ( see : https://reactjs.org/docs/react-component.html#componentdidupdate )
-    if(this.state.searchVal !== search) {
-      this.setState({searchVal: search});
-    }
+      // Must wrap in conditional to avoid infinite loop ( see : https://reactjs.org/docs/react-component.html#componentdidupdate )
+      if(this.state.searchVal !== search) {
+        this.setState({searchVal: search});
+      }
 
-      // Set a timer to check message qty (but not re-render the feed) and check against this count
-    this.interval = setInterval(() => {
-      this.props.fetchMessageCount();
-    },20000);
+        // Set a timer to check message qty (but not re-render the feed) and check against this count
+      this.interval = setInterval(() => {
+        this.props.fetchMessageCount();
+      },200000);
+    }
   }
 
   componentWillUnmount() {
-    clearInterval(this.interval);
+    if(this.props.displayMode === 'feed') {
+      clearInterval(this.interval);
+    }
   }
 
   render() {
-    const { messages, removeMessage, currentUser, fetchMessages } = this.props;
+    const { messages, removeMessage, currentUser, fetchMessages, displayMode = "feed" } = this.props;
 
-    // Don't go minus if more deleted than added..
-    let newMessages = (this.props.messageCount-this.props.messages.length>0 ? this.props.messageCount-this.props.messages.length : 0);
+    if(displayMode === 'feed') {
+      // Don't go minus if more deleted than added..
+      let newMessages = (this.props.messageCount-this.props.messages.length>0 ? this.props.messageCount-this.props.messages.length : 0);
+    }
 
     // Build array of message IDs that are replies
     let replyIds = [];
@@ -92,7 +110,7 @@ class MessageList extends Component {
     return (
       <div className="col-sm-8 p-0 m-0">
         <div>
-          <MessageRefresh messageCount={newMessages} refreshMessages={fetchMessages} />
+          { /* <MessageRefresh messageCount={newMessages} refreshMessages={fetchMessages} /> */ }
           <ul className="list-group" id="messages">
             {messageList}
           </ul>
@@ -103,12 +121,19 @@ class MessageList extends Component {
 
 }
 
-function mapStateToProps(state) {
-  return {
-    messages: state.messages.messages,
-    messageCount: state.messages.messageCount,
-    currentUser: state.currentUser.user.id
-  };
+function mapStateToProps(state, ownProps) {
+  if(ownProps.displayMode === 'feed') {
+    return {
+      messages: state.messages.messages,
+      messageCount: state.messages.messageCount,
+      currentUser: state.currentUser.user.id
+    };
+  } else {
+    return {
+      messages: state.messages.footerMessages,
+      currentUser: state.currentUser.user.id
+    };
+  }
 }
 
 export default withRouter(connect(mapStateToProps, { fetchMessages, removeMessage, editMessage, fetchMessageCount })(MessageList));

@@ -27,7 +27,7 @@ class MessageItem extends Component {
   }
 
   render() {
-    const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply } = this.props;
+    const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply, displayMode='feed' } = this.props;
     const { replyMode } = this.state;
 
     // Render message replies if they exist

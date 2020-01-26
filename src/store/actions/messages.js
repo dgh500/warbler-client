@@ -1,11 +1,16 @@
 import { apiCall } from '../../services/api';
 import { getUserStats } from './users';
 import { addError } from './errors';
-import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT, LOAD_HASHTAGS } from '../actionTypes';
+import { LOAD_MESSAGES, REMOVE_MESSAGE, EDIT_MESSAGE, MESSAGE_COUNT, LOAD_HASHTAGS, LOAD_FOOTER_MESSAGES } from '../actionTypes';
 
 export const loadMessages = messages => ({
   type: LOAD_MESSAGES,
   messages: messages
+});
+
+export const loadFooterMessages = footerMessages => ({
+  type: LOAD_FOOTER_MESSAGES,
+  footerMessages: footerMessages
 });
 
 export const changeMessage = message => ({
@@ -66,23 +71,30 @@ export const fetchMessageCount = () => {
   }
 }
 
-export const fetchMessages = ( id, mode, q='') => {
+export const fetchMessages = ( id, mode, q='', orderBy='newest', orderDir='desc', limit='0', where='feed') => {
   let url;
   switch(mode) {
     case 'hashtagFilter':
-      url = `/api/users/${id}/messages?mode=hashtags&q=${q}`;
+      url = `/api/users/${id}/messages?mode=hashtags&q=${q}&orderBy=${orderBy}&orderDir=${orderDir}&limit=${limit}`;
       break;
     case 'userFilter':
-      url = `/api/users/${id}/messages/mode/user/${q}`;
+      url = `/api/users/${id}/messages?mode=users&q=${q}&orderBy=${orderBy}&orderDir=${orderDir}&limit=${limit}`;
       break;
     case 'all':
     default:
-      url = '/api/messages';
+      url = `/api/users/${id}/messages?orderBy=${orderBy}&orderDir=${orderDir}&limit=${limit}`;
   }
   return dispatch => {
     return apiCall('get', url)
       .then((res) => {
-        dispatch(loadMessages(res));
+        switch(where) {
+          case 'feed':
+            dispatch(loadMessages(res));
+          break;
+          case 'footer':
+            dispatch(loadFooterMessages(res));
+          break;
+        }
         dispatch(fetchMessageCount());
         dispatch(getUserStats());
         dispatch(fetchHashTags());

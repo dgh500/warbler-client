@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import MessageList from '../containers/MessageList';
 
 const Footer = () => {
   return (
@@ -14,7 +16,8 @@ const Footer = () => {
         </ul>
       </div>
       <div className="col-12 col-md-4">
-      {/* will make this it's own component to bring out the warbles with the most replies */}
+      <MessageList mode="all" search="" displayMode="footer" />
+      {/* will make this it's own component to bring out the warbles with the most replies
         <strong className="text-center text-md-left mt-4 mt-md-0">Top Warbles</strong>
         <div className="topWarble">
           <div className="text-center topWarbleImg">
@@ -44,7 +47,7 @@ const Footer = () => {
             <a href="/">@someone</a>
             <p className="m-0">Bacon ipsum dolor amet corned beef chicken drumstick leberkas, salami bacon ground round landjaeger.</p>
           </div>
-        </div>
+        </div>*/}
       </div>
       <div className="col-12 col-md-4">
         <strong className="text-center text-md-left mt-4 mt-md-0">Contact Warbler</strong><br/>

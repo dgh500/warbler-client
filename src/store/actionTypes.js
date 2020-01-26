@@ -8,4 +8,5 @@ export const EDIT_USER        = "EDIT_USER";
 export const LOAD_STATS       = "LOAD_STATS";
 export const MESSAGE_COUNT    = "MESSAGE_COUNT";
 export const LOAD_HASHTAGS    = "LOAD_HASHTAGS";
-export const LOAD_TWITTER_HASHTAGS    = "LOAD_TWITTER_HASHTAGS";
+export const LOAD_TWITTER_HASHTAGS   = "LOAD_TWITTER_HASHTAGS";
+export const LOAD_FOOTER_MESSAGES    = "LOAD_FOOTER_MESSAGES";
