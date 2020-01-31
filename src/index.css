@@ -242,21 +242,25 @@ aside h2:before {
   margin: 0;
   padding: 5px;
 }
+#footer #warblerFooterList i {
+  margin-right: 10px;
+  color: #ffffff;
+  min-width: 15px;
+}
 #footer a {
-  color: #c9c9c9;
+  color: #cc7a00;
 }
 #footer ul li {
   margin: 0;
   padding: 0;
   display: block;
-  min-width: 40%;
+  min-width: 90%;
   border: 0px solid white;
   float: left;
 }
 #footer strong {
   color: #ff9900;
   font-size: 1.2rem;
-  display: block;
 }
 #footer hr {
   margin: 4px auto;
@@ -267,19 +271,24 @@ aside h2:before {
   border-collapse: collapse;
   width: 80%;
 }
+#footer #topWarblesList {
+  width: 100%;
+}
 #footer .topWarble {
   border: 0px solid white;
   font-size: 0.8rem;
   display: flex;
+  flex-shrink: 0;
   flex-direction: row;
   align-items: flex-start;
   line-height: 1rem;
+  width: inherit;
 }
 #footer .topWarble a {
   font-weight: bold;
   color: #a3a3a3;
 }
-#footer .topWarble div {
+#footer .topWarble .warbleBody {
   height: 100%;
   align-self: center;
 }
@@ -304,4 +313,11 @@ aside h2:before {
   color: #e0e0e0;
   padding: 10px;
   font-size: 0.85rem;
+}
+#aboutPage i {
+  font-size: 10rem;
+}
+#aboutPage h1 {
+  color: #ff9900;
+  font-weight: bold;
 }

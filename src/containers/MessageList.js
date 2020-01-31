@@ -72,11 +72,13 @@ class MessageList extends Component {
   }
 
   render() {
-    const { messages, removeMessage, currentUser, fetchMessages, displayMode = "feed" } = this.props;
+    const { messages, removeMessage, currentUser, fetchMessages, displayMode = "feed", styles } = this.props;
+    let messageRefresh;
 
     if(displayMode === 'feed') {
       // Don't go minus if more deleted than added..
       let newMessages = (this.props.messageCount-this.props.messages.length>0 ? this.props.messageCount-this.props.messages.length : 0);
+      messageRefresh = (<MessageRefresh messageCount={newMessages} refreshMessages={fetchMessages} />);
     }
 
     // Build array of message IDs that are replies
@@ -93,32 +95,48 @@ class MessageList extends Component {
     });
 
     // Build JSX for MessageItem
-    let messageList = displayMessages.map(m => (
+    let messageList = displayMessages.map(m => {
+      let replies = [];
+      if(displayMode === "feed") { replies = m.replies; }
+      return (
       <MessageItem
         key={m._id}
-        date={m.createAt}
+        date={m.createdAt}
         text={m.text}
         username={m.user.username}
         profileImageUrl={m.user.profileImageUrl}
         removeMessage={removeMessage.bind(this, m.user._id, m._id)}
         messageId={m._id}
-        replies={m.replies}
+        replies={replies}
         isCorrectUser={currentUser === m.user._id}
         isReply={false}
+        displayMode={displayMode}
+        styles={styles}
         />
-    ));
+      )
+    });
     return (
-      <div className="col-sm-8 p-0 m-0">
+      <div className={styles.outerDiv}>
         <div>
-          { /* <MessageRefresh messageCount={newMessages} refreshMessages={fetchMessages} /> */ }
-          <ul className="list-group" id="messages">
+          {messageRefresh}
+          <ul className={styles.outerUlClass} id={styles.outerUlId}>
             {messageList}
           </ul>
         </div>
       </div>
     );
   }
+} // end component
 
+MessageList.defaultProps = {
+  styles: {
+    outerDiv: "col-sm-8 p-0 m-0",
+    outerUlClass: "list-group",
+    outerUlId: "messages",
+    outerLi: 'list-group-item',
+    profileImg: 'timeline-image',
+    messageContainer: 'message-area'
+  }
 }
 
 function mapStateToProps(state, ownProps) {

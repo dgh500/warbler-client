@@ -3,6 +3,8 @@ import { Switch, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Homepage from '../components/Homepage';
 import AuthForm from '../components/AuthForm';
+import About from '../components/About';
+import Contact from '../components/Contact';
 import { authUser } from '../store/actions/auth';
 import { removeError } from '../store/actions/errors';
 import withAuth from '../hocs/withAuth';
@@ -24,6 +26,8 @@ const Main = props => {
             search=""
             {...props} />
         )} />
+        <Route exact path="/about" component={About} />
+        <Route exact path="/contact" component={Contact} />
         <Route exact path="/signin"
           render={props => (
             <AuthForm

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import MessageList from '../containers/MessageList';
 
@@ -8,46 +9,16 @@ const Footer = () => {
     <div id="footer" className="row clearfix">
       <div className="col-12 col-md-4">
         <strong className="text-center text-md-left">Warbler</strong>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/">My Profile</a></li>
-          <li><a href="/">About</a></li>
-          <li><a href="/">Contact</a></li>
+        <ul id="warblerFooterList">
+          <li><Link to="/"><i className="fas fa-home"></i>Home</Link></li>
+          <li><Link to="/profile"><i className="fas fa-user"></i>My Profile</Link></li>
+          <li><Link to="/about"><i className="far fa-question-circle"></i>About</Link></li>
+          <li><Link to="/contact"><i className="fas fa-address-card"></i>Contact</Link></li>
         </ul>
       </div>
       <div className="col-12 col-md-4">
-      <MessageList mode="all" search="" displayMode="footer" />
-      {/* will make this it's own component to bring out the warbles with the most replies
         <strong className="text-center text-md-left mt-4 mt-md-0">Top Warbles</strong>
-        <div className="topWarble">
-          <div className="text-center topWarbleImg">
-            <img src="http://localhost:8081/images/image-1576531150591.jpg" alt="userName" />
-          </div>
-          <div className="topWarbleBody">
-            <a href="/">@someone</a>
-            <p className="m-0">Bacon ipsum dolor amet corned beef chicken drumstick leberkas, salami bacon ground round landjaeger.</p>
-          </div>
-        </div>
-        <hr />
-        <div className="topWarble">
-          <div className="text-center">
-            <img src="http://localhost:8081/images/image-1576531150591.jpg" alt="userName"  />
-          </div>
-          <div className="warbleBody">
-            <a href="/">@someone</a>
-            <p className="m-0">Bacon ipsum dolor amet corned beef chicken drumstick leberkas, salami bacon ground round landjaeger.</p>
-          </div>
-        </div>
-        <hr />
-        <div className="topWarble">
-          <div className="text-center">
-            <img src="http://localhost:8081/images/image-1576531150591.jpg" alt="userName"  />
-          </div>
-          <div className="warbleBody">
-            <a href="/">@someone</a>
-            <p className="m-0">Bacon ipsum dolor amet corned beef chicken drumstick leberkas, salami bacon ground round landjaeger.</p>
-          </div>
-        </div>*/}
+          <MessageList mode="all" search="" displayMode="footer" styles={{outerDiv: "", outerUlClass: "", outerUlId: "topWarblesList", outerLi: "topWarble", profileImg: "", messageContainer: "topWarbleBody"}} />
       </div>
       <div className="col-12 col-md-4">
         <strong className="text-center text-md-left mt-4 mt-md-0">Contact Warbler</strong><br/>
