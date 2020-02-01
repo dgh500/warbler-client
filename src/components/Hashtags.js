@@ -7,10 +7,6 @@ import RemoteHashtags from './RemoteHashtags';
 
 class Hashtags extends Component {
 
-  // constructor(props) {
-  //   super(props);
-  // }
-
   componentDidMount() {
     this.props.fetchHashTags(this.props.user_id);
   }

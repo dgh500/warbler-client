@@ -99,7 +99,8 @@ ul.nav.navbar-nav li {
 }
 
 .innerContainer {
-  margin: 20px 0;
+  /* margin: 20px 0; */
+  padding: 20px;
 }
 
 .home-hero {
@@ -204,6 +205,9 @@ aside {
   /* min-width: 250px; */
   text-align: center;
 }
+aside h2 {
+  color: #0099ff;
+}
 aside h2:before {
   content: "@";
   font-size: 1.1rem;
@@ -220,12 +224,20 @@ aside h2:before {
   text-align: left;
   border: 0px solid blue;
 }
+#hashtags h3 {
+  color: #0099ff;
+  font-weight: bold;
+  text-align: center;
+}
+#hashtags a {
+  color: #666666;
+}
 #hashtags hr {
-  margin: 4px auto 4px 0;
+  margin: 8px auto 4px auto;
   padding: 0;
   border: 0px solid #c9c9c9;
   height: 1px;
-  background-color: #595959;
+  background-color: #CCCCCC;
   border-collapse: collapse;
   width: 80%;
 }
@@ -318,6 +330,6 @@ aside h2:before {
   font-size: 10rem;
 }
 #aboutPage h1 {
-  color: #ff9900;
+  color: #0099ff;
   font-weight: bold;
 }

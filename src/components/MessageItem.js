@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
 import { replyToMessage } from '../store/actions/messages';
 import Hashtag from './Hashtag';
+import UsernameLink from './UsernameLink';
 
 /**
  * Renders a message item, and if in feed mode recursively renders any replies
@@ -64,9 +65,6 @@ class MessageItem extends Component {
       (w[0] === '#' ? <span key={i}><Hashtag hashtag={w} key={i} /> </span> : <span key={i}>{w} </span>)
     ));
 
-    // TODO: remove this to <Userlink/> component
-    let usernameLink = `/messages/filter/user/${username}`;
-
     // Render message
     return (
       <>
@@ -78,14 +76,14 @@ class MessageItem extends Component {
           width="100"
           className={styles.profileImg} />
           <div className={styles.messageContainer}>
-            <Link to={usernameLink}>@{username} &nbsp;</Link>
+            <UsernameLink username={username} />&nbsp;
             <span className="text-muted">
               <Moment className="text-muted" format="ddd Do MMM [']YY [@] HH[:]ma">
                 {date}
               </Moment>
             </span>
             <p>{modifiedText}</p>
-            {displayMode === "feed" && isCorrectUser && !isReply &&
+            {displayMode === "feed" && isCorrectUser && 
               <>
               <button onClick={removeMessage} className="btn btn-sm btn-danger">Delete</button>
                 <Link to={`/editMessage/${messageId}`} className="btn btn-sm btn-warning ml-1">Edit</Link>
@@ -120,6 +118,9 @@ class MessageItem extends Component {
   }
 } // end component definition
 
+/**
+ * Default Prop definitions - used to default the component to a feed setting and styles
+ */
 MessageItem.defaultProps = {
   displayMode: 'feed',
   styles: {

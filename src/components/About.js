@@ -19,6 +19,7 @@ const About = () => {
           <li>Restyling & Footer</li>
           <li>Periodical refresh message count without full reload</li>
           <li>Message Aggregation</li>
+          <li>Geolocation</li>
           <li>Backend RESTFul API Extended</li>
           <li>MessageList and MessageItem re-usable components</li>
         </ul>
