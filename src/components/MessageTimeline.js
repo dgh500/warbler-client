@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import MessageList from '../containers/MessageList';
+import MessageList from './MessageList';
 import UserAside from './UserAside';
 import Hashtags from './Hashtags';
 

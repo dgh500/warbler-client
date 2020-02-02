@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postNewMessage } from '../store/actions/messages';
 
+/**
+ * Form to add a new message
+ */
 class MessageForm extends Component {
   constructor(props) {
     super(props);

@@ -88,11 +88,12 @@ export const fetchMessages = ( id, mode, q='', orderBy='newest', orderDir='desc'
     return apiCall('get', url)
       .then((res) => {
         switch(where) {
-          case 'feed':
-            dispatch(loadMessages(res));
-          break;
           case 'footer':
             dispatch(loadFooterMessages(res));
+          break;          
+          case 'feed':
+          default:
+            dispatch(loadMessages(res));
           break;
         }
         dispatch(fetchMessageCount());

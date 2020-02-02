@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { editUser } from '../store/actions/users';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
 
+/**
+ * Renders the 'Edit Profile' page where a user can change their email address, username or profile image
+ */
 class EditProfile extends Component {
 
   // Initialise local state
@@ -18,19 +21,8 @@ class EditProfile extends Component {
   }
 
   /**
-   * Define prop types
-   */
-   static propTypes = {
-     // Errors object
-     errors:      PropTypes.object,
-     // history object ( see https://reacttraining.com/react-router/web/api/history )
-     history:     PropTypes.object,
-     // the remove error action creator ( defined in src/store/actions/errors.js and passed from Main.js through connect() mapDispatchToProps object )
-     removeError: PropTypes.func
-   };
-
-  /**
-   * Allow React to control inputs
+   * Allow React to control inputs - generic react functionality
+   * @public
    * @param {event} e - synthetic event - https://reactjs.org/docs/events.html
    */
   handleChange = (e) => {
@@ -44,12 +36,17 @@ class EditProfile extends Component {
     });
   };
 
+  /**
+   * Maintains local state to match the file uploaded
+   * @public
+   */
   handleFileChange = (e) => {
       this.setState({ profileImageUrl: e.target.files[0] });
   }
 
   /**
-   * xx
+   * Handles submitting new profile data and submitting it
+   * @public
    * @param {event} e - synthetic event - https://reactjs.org/docs/events.html
    */
   handleSubmit = (e) => {
@@ -68,7 +65,10 @@ class EditProfile extends Component {
     });
   }
 
-  // add the listen to componentDidMount
+  /**
+   * Set up listener for URL changes
+   * @public
+   */
   componentDidMount() {
     /**
      * history.listen will trigger whenever a route changes - in practice this means if you either enter a bad username/password combo or
@@ -83,6 +83,10 @@ class EditProfile extends Component {
     })});
   }
 
+  /**
+   * Unsubscribe listener on unmount
+   * @public
+   */
   componentWillUnmount() {
     this.state.unsubscribe();
   }
@@ -141,5 +145,17 @@ class EditProfile extends Component {
     );
   }
 }
+
+/**
+ * Define prop types
+ */
+ EditProfile.propTypes = {
+   /** Errors object */
+   errors:      PropTypes.object,
+   /**  history object ( see https://reacttraining.com/react-router/web/api/history ) */
+   history:     PropTypes.object,
+   /**  the remove error action creator ( defined in src/store/actions/errors.js and passed from Main.js through connect() mapDispatchToProps object ) */
+   removeError: PropTypes.func
+ };
 
 export default connect(null, { editUser })(EditProfile);

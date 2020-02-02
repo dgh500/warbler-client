@@ -1,0 +1,3 @@
+```html
+<Hashtag hashtag="trendingHashtag" />
+```

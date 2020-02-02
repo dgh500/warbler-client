@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchMessages, removeMessage, editMessage, fetchMessageCount } from '../store/actions/messages';
-import MessageItem from '../components/MessageItem';
-import MessageRefresh from '../components/MessageRefresh';
+import MessageItem from './MessageItem';
+import MessageRefresh from './MessageRefresh';
 
 /**
- * Generates a message list, expects:
- * props.mode - String - one of all, hashtagFilter, userFilter
- * props.search - String - query to search for, for the mode ^^
- *
- *
+ * Generates a message list of MessageItem components
  **/
 class MessageList extends Component {
 
@@ -128,6 +125,9 @@ class MessageList extends Component {
   }
 } // end component
 
+/**
+ * Defines default styles -- move into component?
+ */
 MessageList.defaultProps = {
   styles: {
     outerDiv: "col-sm-8 p-0 m-0",
@@ -137,6 +137,43 @@ MessageList.defaultProps = {
     profileImg: 'timeline-image',
     messageContainer: 'message-area'
   }
+}
+
+// search }
+MessageList.propTypes = {
+  /** The list of messages to render */
+  messages: PropTypes.array.isRequired,
+  /** Callback function to remove (delete) a message if applicable */
+  removeMessage: PropTypes.func,
+  /** Funtion used to fetch messages */
+  fetchMessages: PropTypes.func,
+  /** Mode to filter messages by, possible options:
+   * <ul>
+   * <li>hashtagFilter - filter by hashtag</li>
+   * <li>userFilter - filter by user</li>
+   * <li>all - the default, show all messages</li>
+   * </ul>
+   */
+  mode: PropTypes.string,
+  /** If the mode is userFilter or hashtagFilter then this value will be the search query.
+   * So for example if mode is userFilter and search is johndoe then it will attempt to filter to show only messages by johndoe
+   */
+  search: PropTypes.string,
+  /** Feed - full functionality, Footer - just display messages */
+  displayMode: PropTypes.string,
+  /** id of the logged in user - required for API calls, could abstract out */
+  currentUser: PropTypes.string.isRequired,
+  /** Object with classes for any part of the message that needs styling. Defaults to feed styles<br>
+  *  <ul>
+  *  <li>outerDiv - Class for the outermost container div</li>
+  *  <li>outerUlClass - Class for the ul that contains all MessageItems</li>
+  *  <li>outerUlId - ID for the ul that contains all MessageItems ( required? )</li>
+  *  <li>outerLi - Passed through to MessageItem</li>
+  *  <li>profileImg - Passed through to MessageItem</li>
+  *  <li>messageContainer - Passed through to MessageItem</li>
+  *  </ul>
+  */
+  styles: PropTypes.object
 }
 
 function mapStateToProps(state, ownProps) {

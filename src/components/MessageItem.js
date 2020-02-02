@@ -9,7 +9,10 @@ import Hashtag from './Hashtag';
 import UsernameLink from './UsernameLink';
 
 /**
- * Renders a message item, and if in feed mode recursively renders any replies
+ * Renders a message item, and if in feed mode recursively renders any replies. A MessageItem can be styled using the styles prop to be displayed in different areas.
+ * The "feed" display mode is fully functional ( can reply, edit and delete posts ) whereas the "footer" is purely for displaying message posts.
+ *
+ * ![MessageItem](https://localhost:3000/MessageItem.jpg)
  */
 class MessageItem extends Component {
   constructor(props) {
@@ -22,12 +25,16 @@ class MessageItem extends Component {
     }
   }
 
-  // Toggles reply mode - user only sees the reply box if on
+  /**
+   * Toggles reply mode - user only sees the reply box if on
+   */
   replyToggle = () => {
     this.setState({replyMode: !this.state.replyMode});
   }
 
-  // onSubmit handler for adding a reply ( new message ) to an existing message
+  /**
+   * onSubmit handler for adding a reply ( new message ) to an existing message
+   */
   handleReply = (e) => {
     e.preventDefault();
     this.props.replyToMessage(this.state.replyMessage,this.props.messageId);
@@ -40,7 +47,31 @@ class MessageItem extends Component {
   render() {
     const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply, displayMode, styles } = this.props;
     const { replyMode } = this.state;
-
+    const deleteButtonStyle = {
+      border: "0px",
+      background: "none",
+      color: "#666",
+      position: "absolute",
+      bottom: "0",
+      right: "60px"
+    }
+    const editButtonStyle = {
+      border: "0px",
+      background: "none",
+      color: "#666",
+      position: "absolute",
+      bottom: "2px",
+      right: "35px"
+    }
+    const replyButtonStyle = {
+      border: "0px",
+      background: "none",
+      color: "#666",
+      position: "absolute",
+      bottom: "0",
+      right: "3px",
+      transform: "scaleX(-1) rotate(180deg)"
+    }
     // Render message replies if they exist
     let repliesDisplay = null;
     if(replies.length > 0) {
@@ -83,14 +114,14 @@ class MessageItem extends Component {
               </Moment>
             </span>
             <p>{modifiedText}</p>
-            {displayMode === "feed" && isCorrectUser && 
+            {displayMode === "feed" && isCorrectUser &&
               <>
-              <button onClick={removeMessage} className="btn btn-sm btn-danger">Delete</button>
-                <Link to={`/editMessage/${messageId}`} className="btn btn-sm btn-warning ml-1">Edit</Link>
+              <button onClick={removeMessage} style={deleteButtonStyle}><i className="fas fa-trash-alt"></i></button>
+                <Link to={`/editMessage/${messageId}`} style={editButtonStyle}><i className="fas fa-edit"></i></Link>
               </>
             }
             {displayMode === "feed" && !isReply &&
-              <button onClick={this.replyToggle} className="btn btn-sm btn-success ml-1">Reply</button>
+              <button onClick={this.replyToggle} style={replyButtonStyle} className="ml-1"><i class="fas fa-reply"></i></button>
             }
           </div>
         </li>
@@ -105,8 +136,8 @@ class MessageItem extends Component {
             value={this.state.replyMessage}
             onChange={e => this.setState({ replyMessage: e.target.value })}
             />
-            <button className="btn btn-sm btn-success ml-2 mb-1">
-              Reply
+            <button className="ml-2 mb-1" style={replyButtonStyle}>
+            Reply
             </button>
             <button className="link-button" onClick={this.replyToggle}><i className="fas fa-times"></i></button>
         </form>
@@ -134,18 +165,36 @@ MessageItem.defaultProps = {
  * Expected prop types - crucially the displayMode is responsible for deciding which functionality to render. 'Feed' is fully functional - can edit, reply, delete etc where any other value is display only
  */
 MessageItem.propTypes = {
-  date: PropTypes.string.isRequired, // Fomat "2020-01-25T22:31:32.408Z"
-  profileImageUrl: PropTypes.string.isRequired, // Filename of user's profile image - assumes located in localhost:8018/images/ directory
-  text: PropTypes.string.isRequired, // Message text
-  username: PropTypes.string.isRequired, // Username of user that is author of message
-  removeMessage: PropTypes.func, // Callback function to remove (delete) a message if applicable
-  isCorrectUser: PropTypes.bool.isRequired, // Decides whether to show edit/delete buttons where appropriate
-  currentUser: PropTypes.string.isRequired, // _id of the logged in user
-  messageId: PropTypes.string.isRequired, // _id of the message
-  replies: PropTypes.array.isRequired, // An array of replies, recursively rendered if supplied, and in an applicable display mode
-  isReply: PropTypes.bool.isRequired, // If a message is a reply then you can't reply to it - 1 layer deep only
-  displayMode: PropTypes.string, // Feed - full functionality, Footer - just display messages
-  styles: PropTypes.object // Object with classes for any part of the message that needs styling. Defaults to feed styles
+  /** Format "2020-01-25T22:31:32.408Z" */
+  date: PropTypes.string.isRequired,
+  /** Filename of user's profile image - assumes located in localhost:8018/images/ directory, should ENV variable this */
+  profileImageUrl: PropTypes.string.isRequired,
+  /** Message text */
+  text: PropTypes.string.isRequired,
+  /** Username of user that is author of message */
+  username: PropTypes.string.isRequired,
+  /** Callback function to remove (delete) a message if applicable */
+  removeMessage: PropTypes.func,
+  /**  Decides whether to show edit/delete buttons where appropriate */
+  isCorrectUser: PropTypes.bool.isRequired,
+  /** id of the logged in user - required for API calls, could abstract out */
+  currentUser: PropTypes.string.isRequired,
+  /** ID of the message to be rendered */
+  messageId: PropTypes.string.isRequired,
+  /** An array of replies, recursively rendered if supplied, and in an applicable display mode */
+  replies: PropTypes.array.isRequired,
+  /** If a message is a reply then you can't reply to it - 1 layer deep only */
+  isReply: PropTypes.bool.isRequired,
+  /** Feed - full functionality, Footer - just display messages */
+  displayMode: PropTypes.string,
+  /** Object with classes for any part of the message that needs styling. Defaults to feed styles<br>
+  *  <ul>
+  *  <li>outerLi - class name to apply to the li that contains the message NB. if in reply mode a reply-item class will also be added to this li</li>
+  *  <li>profileImg - class name to be applied to the img tag that displays the user's profile image</li>
+  *  <li>messageContainer - class name to be applied the the div which contains the message itself (NB. the img is OUTSIDE this div - use profileImg to style the image)</li>
+  *  </ul>
+  */
+  styles: PropTypes.object
 }
 
 // Current user ID required for message routes

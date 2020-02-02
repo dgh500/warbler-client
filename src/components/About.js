@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Dumb component - static content for about warbler
+ */
 const About = () => {
   return (
     <>

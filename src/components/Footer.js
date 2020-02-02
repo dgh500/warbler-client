@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import MessageList from '../containers/MessageList';
+import MessageList from './MessageList';
 
+/**
+ * Renders the page footer. The majority is static content except the second section which loads 'Top Warbles' defined as the 3 messages with the most replies.
+ * This is loaded as a &lt;MessageList&gt; component with displayMode footer
+ */
 const Footer = () => {
   return (
   <>

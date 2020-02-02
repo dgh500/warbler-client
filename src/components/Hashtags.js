@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchHashTags } from '../store/actions/messages';
-// import { geolocated } from 'react-geolocated';
+import PropTypes from 'prop-types';
 import Hashtag from './Hashtag';
 import RemoteHashtags from './RemoteHashtags';
 
+/**
+ * Wrapper component for loading local and remove hashtag components
+ *
+ */
 class Hashtags extends Component {
 
   componentDidMount() {
@@ -35,6 +39,11 @@ Hashtags.defaultProps = {
   warbleHashtags: []
 }
 
+Hashtags.propTypes = {
+  /** Array of hashtags to display in warble hashtag section. Loaded on mount from API */
+  warbleHashtags: PropTypes.array
+}
+
 function mapStateToProps(state) {
   if(state.users.userStats === undefined) {
     return {
@@ -48,5 +57,4 @@ function mapStateToProps(state) {
   }
 }
 
-////// up to here - add in the react geolocation middleware...
 export default connect(mapStateToProps,{ fetchHashTags })(Hashtags);

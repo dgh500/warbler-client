@@ -3,14 +3,14 @@ import { Provider } from 'react-redux';
 import { configureStore } from '../store';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Navbar from './Navbar';
-import Footer from '../components/Footer';
+import Footer from './Footer';
 import Main from './Main';
 import { setAuthorizationToken, setCurrentUser } from '../store/actions/auth';
 import jwtDecode from 'jwt-decode';
 
 const store = configureStore();
 
-/* If the page refreshes then the authorization token will still be in local storage
+/** If the page refreshes then the authorization token will still be in local storage
  * so we set the authorization token in the redux store to repopulate (rehydrate is word used in video)
  * the current state of the app - in this case the tweet list
  */
@@ -24,6 +24,9 @@ if(localStorage.jwtToken) {
   }
 }
 
+/**
+ * Root component - includes React-Redux Provider wrapper and React-Router-DOM Router wrapper, then Navbar, Main, Footer page structure
+ */
 const App = () => (
   <Provider store={store}>
     <Router>
