@@ -34,7 +34,7 @@ const Homepage = ({ currentUser, mode, search }) => {
 
 Homepage.propTypes = {
   //* ID of currently logged in user */
-  currentUser: PropTypes.string.isRequired,
+  currentUser: PropTypes.object.isRequired,
   /** Mode to filter messages by, possible options:
    * <ul>
    * <li>hashtagFilter - filter by hashtag</li>

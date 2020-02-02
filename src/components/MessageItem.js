@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Moment from 'react-moment';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import SlideToggle from 'react-slide-toggle';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
 import { replyToMessage } from '../store/actions/messages';
 import Hashtag from './Hashtag';
@@ -20,6 +21,8 @@ class MessageItem extends Component {
     this.state = {
       // If true, shows a text box to enter a new message
       replyMode: false,
+      // Used to toggle the display of the reply box
+      toggleSwitch: null,
       // Controlled input if in reply mode
       replyMessage: ''
     }
@@ -29,7 +32,10 @@ class MessageItem extends Component {
    * Toggles reply mode - user only sees the reply box if on
    */
   replyToggle = () => {
-    this.setState({replyMode: !this.state.replyMode});
+    this.setState({
+      replyMode: !this.state.replyMode,
+      toggleSwitch: Date.now()
+    });
   }
 
   /**
@@ -46,7 +52,7 @@ class MessageItem extends Component {
   // Main render message
   render() {
     const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply, displayMode, styles } = this.props;
-    const { replyMode } = this.state;
+    const { replyMode, toggleSwitch } = this.state;
     const deleteButtonStyle = {
       border: "0px",
       background: "none",
@@ -81,6 +87,7 @@ class MessageItem extends Component {
           date={m.createdAt}
           text={m.text}
           username={m.user.username}
+          currentUser={m.user._id}
           profileImageUrl={m.user.profileImageUrl}
           removeMessage={removeMessage.bind(this, m.user._id, m._id)}
           messageId={m._id}
@@ -121,27 +128,31 @@ class MessageItem extends Component {
               </>
             }
             {displayMode === "feed" && !isReply &&
-              <button onClick={this.replyToggle} style={replyButtonStyle} className="ml-1"><i class="fas fa-reply"></i></button>
+              <button onClick={this.replyToggle} style={replyButtonStyle} className="ml-1 toggle"><i className="fas fa-reply"></i></button>
             }
           </div>
         </li>
 
-      {displayMode === "feed" && replyMode &&
-        <li className={styles.outerLi + " reply"}>
-        <form onSubmit={this.handleReply}>
-        <i className="fas fa-reply"></i>
-        <input
-            type="text"
-            className="form-control"
-            value={this.state.replyMessage}
-            onChange={e => this.setState({ replyMessage: e.target.value })}
-            />
-            <button className="ml-2 mb-1" style={replyButtonStyle}>
-            Reply
-            </button>
-            <button className="link-button" onClick={this.replyToggle}><i className="fas fa-times"></i></button>
-        </form>
-        </li>
+      {displayMode === "feed" && // replyMode && // - used to show/hide, doesn't work if want to use effects slidein/out etc
+        <SlideToggle toggleEvent={toggleSwitch} collapsed={true} duration={150}>
+        {({ setCollapsibleElement }) => (
+          <li className={styles.outerLi + " reply my-collapsible"} ref={setCollapsibleElement}>
+          <form onSubmit={this.handleReply}>
+          <i className="fas fa-reply"></i>
+          <input
+              type="text"
+              className="form-control"
+              value={this.state.replyMessage}
+              onChange={e => this.setState({ replyMessage: e.target.value })}
+              />
+              <button className="btn btn-sm btn-primary ml-2 mb-1">
+              Reply
+              </button>
+          </form>
+          <button className="link-button toggle" onClick={this.replyToggle}><i className="fas fa-times"></i></button>
+          </li>
+        )}
+        </SlideToggle>
       }
       {repliesDisplay}
       </>
