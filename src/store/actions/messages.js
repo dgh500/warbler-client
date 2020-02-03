@@ -47,6 +47,7 @@ export const fetchHashTags = (user_id) => {
 
 export const removeMessage = (user_id, message_id) => {
   return dispatch => {
+    // console.log(`/api/users/${user_id}/messages/${message_id}`);
     return apiCall(
       'delete',
       `/api/users/${user_id}/messages/${message_id}`)
@@ -90,7 +91,7 @@ export const fetchMessages = ( id, mode, q='', orderBy='newest', orderDir='desc'
         switch(where) {
           case 'footer':
             dispatch(loadFooterMessages(res));
-          break;          
+          break;
           case 'feed':
           default:
             dispatch(loadMessages(res));

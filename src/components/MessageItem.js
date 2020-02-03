@@ -5,7 +5,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import SlideToggle from 'react-slide-toggle';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
-import { replyToMessage } from '../store/actions/messages';
+import { replyToMessage, removeMessage } from '../store/actions/messages';
 import Hashtag from './Hashtag';
 import UsernameLink from './UsernameLink';
 
@@ -26,6 +26,7 @@ class MessageItem extends Component {
       // Controlled input if in reply mode
       replyMessage: ''
     }
+
   }
 
   /**
@@ -48,6 +49,7 @@ class MessageItem extends Component {
     this.setState({ replyMessage: "", replyMode: false });
     this.props.history.push('/');
   }
+
 
   // Main render message
   render() {
@@ -185,7 +187,7 @@ MessageItem.propTypes = {
   /** Username of user that is author of message */
   username: PropTypes.string.isRequired,
   /** Callback function to remove (delete) a message if applicable */
-  removeMessage: PropTypes.func,
+  // removeMessage: PropTypes.func,
   /**  Decides whether to show edit/delete buttons where appropriate */
   isCorrectUser: PropTypes.bool.isRequired,
   /** id of the logged in user - required for API calls, could abstract out */
@@ -216,4 +218,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps, { replyToMessage })(MessageItem));
+export default withRouter(connect(mapStateToProps, { replyToMessage, removeMessage })(MessageItem));
