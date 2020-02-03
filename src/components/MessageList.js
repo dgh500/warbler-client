@@ -162,7 +162,7 @@ MessageList.propTypes = {
   /** Feed - full functionality, Footer - just display messages */
   displayMode: PropTypes.string,
   /** id of the logged in user - required for API calls, could abstract out */
-  currentUser: PropTypes.string.isRequired,
+  currentUser: PropTypes.string,
   /** Object with classes for any part of the message that needs styling. Defaults to feed styles<br>
   *  <ul>
   *  <li>outerDiv - Class for the outermost container div</li>

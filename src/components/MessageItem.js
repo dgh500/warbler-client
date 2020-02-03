@@ -54,7 +54,7 @@ class MessageItem extends Component {
   // Main render message
   render() {
     const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply, displayMode, styles } = this.props;
-    const { replyMode, toggleSwitch } = this.state;
+    const { /*replyMode, */toggleSwitch } = this.state;
     const deleteButtonStyle = {
       border: "0px",
       background: "none",
@@ -191,7 +191,7 @@ MessageItem.propTypes = {
   /**  Decides whether to show edit/delete buttons where appropriate */
   isCorrectUser: PropTypes.bool.isRequired,
   /** id of the logged in user - required for API calls, could abstract out */
-  currentUser: PropTypes.string.isRequired,
+  currentUser: PropTypes.string,
   /** ID of the message to be rendered */
   messageId: PropTypes.string.isRequired,
   /** An array of replies, recursively rendered if supplied, and in an applicable display mode */
