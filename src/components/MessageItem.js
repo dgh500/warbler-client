@@ -26,7 +26,7 @@ class MessageItem extends Component {
       // Controlled input if in reply mode
       replyMessage: ''
     }
-
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   /**
@@ -50,6 +50,9 @@ class MessageItem extends Component {
     this.props.history.push('/');
   }
 
+  handleDelete = () => {
+    this.props.removeMessage(this.props.currentUser,this.props.messageId);
+  }
 
   // Main render message
   render() {
@@ -80,6 +83,7 @@ class MessageItem extends Component {
       right: "3px",
       transform: "scaleX(-1) rotate(180deg)"
     }
+    // console.log(this);
     // Render message replies if they exist
     let repliesDisplay = null;
     if(replies.length > 0) {
@@ -93,7 +97,7 @@ class MessageItem extends Component {
           profileImageUrl={m.user.profileImageUrl}
           removeMessage={removeMessage.bind(this, m.user._id, m._id)}
           messageId={m._id}
-          replies={m.replies}
+          replies={[]} // don't go below 1 deep
           isCorrectUser={currentUser === m.user._id}
           isReply={true}
           />
@@ -105,6 +109,7 @@ class MessageItem extends Component {
       (w[0] === '#' ? <span key={i}><Hashtag hashtag={w} key={i} /> </span> : <span key={i}>{w} </span>)
     ));
 
+    // console.log(messageId + " " + username + " " + text);
     // Render message
     return (
       <>
@@ -125,7 +130,7 @@ class MessageItem extends Component {
             <p>{modifiedText}</p>
             {displayMode === "feed" && isCorrectUser &&
               <>
-              <button onClick={removeMessage} style={deleteButtonStyle}><i className="fas fa-trash-alt"></i></button>
+              <button onClick={this.handleDelete} style={deleteButtonStyle}><i className="fas fa-trash-alt"></i></button>
                 <Link to={`/editMessage/${messageId}`} style={editButtonStyle}><i className="fas fa-edit"></i></Link>
               </>
             }

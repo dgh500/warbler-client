@@ -93,6 +93,7 @@ class MessageList extends Component {
 
     // Build JSX for MessageItem
     let messageList = displayMessages.map(m => {
+      // console.log(this);
       let replies = [];
       if(displayMode === "feed") { replies = m.replies; }
       return (
@@ -102,7 +103,7 @@ class MessageList extends Component {
         text={m.text}
         username={m.user.username}
         profileImageUrl={m.user.profileImageUrl}
-        removeMessage={removeMessage.bind(this, m.user._id, m._id)}
+        removeMessage={(m) => removeMessage(m.user._id, m._id)}
         messageId={m._id}
         replies={replies}
         isCorrectUser={currentUser === m.user._id}
