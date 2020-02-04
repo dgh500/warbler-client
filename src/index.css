@@ -42,7 +42,7 @@ text-decoration: none;
   cursor: pointer;
 }
 
-.btn-primary {
+.btn-primary, .btn-primary:focus {
   background-color: #ff9900;
   border: 1px solid #ff9900;
   color: #000;
@@ -142,22 +142,9 @@ ul.nav.navbar-nav li {
 
 #messages .reply {
   background-color: #e6ecf0;
-  width: 90%;
-  /* height: 40px; */
+  width: 95%;
   align-self: flex-end;
-  /* opacity: 1;
-  visibility: visible;
-  transition: opacity 2s linear; */
 }
-/* #messages .reply-hide {
-  background-color: #e6ecf0;
-  width: 90%;
-  align-self: flex-end;
-  opacity: 0;
-  visibility: hidden;
-  display: none;
-  transition: opacity 2s linear;
-} */
 #messages .reply i.fa-reply {
   color: black;
   margin-right: 10px;

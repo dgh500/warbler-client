@@ -46,7 +46,7 @@ class MessageItem extends Component {
     e.preventDefault();
     this.props.replyToMessage(this.state.replyMessage,this.props.messageId);
     // Reset form and exit reply mode once complete
-    this.setState({ replyMessage: "", replyMode: false });
+    this.setState({ replyMessage: "", replyMode: false, toggleSwitch: Date.now() });
     this.props.history.push('/');
   }
 
