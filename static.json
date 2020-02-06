@@ -5,7 +5,7 @@
   },
   "proxies": {
     "/api": {
-      "origin": "https://dgh500-warbler.herokuapp.com"
+      "origin": "https://dgh500-warbler.herokuapp.com/api"
     }
   }
 }
