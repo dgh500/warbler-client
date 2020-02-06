@@ -18,7 +18,7 @@ export default function withAuth(ComponentToBeRendered) {
       }
     }
 
-    componentWillUpdate(nextProps) {
+    componentWDidUpdate(nextProps) {
     //componentDidMount(nextProps) {
       if(nextProps.isAuthenticated === false) {
         this.props.history.push("/signin");
