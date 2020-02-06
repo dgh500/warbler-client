@@ -18,8 +18,8 @@ export default function withAuth(ComponentToBeRendered) {
       }
     }
 
-    // componentWillUpdate(nextProps) {
-    componentDidMount(nextProps) {
+    componentWillUpdate(nextProps) {
+    //componentDidMount(nextProps) {
       if(nextProps.isAuthenticated === false) {
         this.props.history.push("/signin");
       }
