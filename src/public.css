@@ -1,7 +1,11 @@
+/*********************************************
+    GENERAL (NON COMPONENT SPECIFIC) STYLES
+**********************************************/
 body {
   background-color: #e6ecf0;
 }
 
+/* Style a link like a button for accessibility  */
 .link-button {
   background-color: transparent;
   border: none;
@@ -14,34 +18,10 @@ body {
 
 .link-button:hover,
 .link-button:focus {
-text-decoration: none;
+  text-decoration: none;
 }
 
-/* Nav */
-
-.navbar {
-  /* margin-bottom: 1rem; */
-  min-height: 70px;
-}
-
-.navbar h1 {
-  display: inline-block;
-  position: relative;
-  top: 5px;
-  color: white;
-}
-
-.navbar a {
-  font-weight: bold;
-  color: #ff9900;
-}
-
-.navbar a:hover {
-  color: #ff9900;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
+/* Re-style some bootstrap styles */
 .btn-primary, .btn-primary:focus {
   background-color: #ff9900;
   border: 1px solid #ff9900;
@@ -63,7 +43,7 @@ text-decoration: none;
   border: 1px solid #ff9900;
   color: #000;
   text-shadow: 0 0 0 #ff9900;
-  box-shadow: 0 0 0 0.2rem rgba(255,255,255,.5);
+  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.5);
   font-weight: bold;
 }
 
@@ -72,23 +52,8 @@ text-decoration: none;
   box-shadow: none !important;
 }
 
-@media screen and (min-width:768px){
-    .navbar-brand-centered {
-        position: absolute;
-        left: 50%;
-        top: 0;
-        display: block;
-        /* width: 160px; */
-        text-align: center;
-        /* background-color: #eee; */
-    }
-    .navbar>.container .navbar-brand-centered,
-    .navbar>.container-fluid .navbar-brand-centered {
-        margin-left: -80px;
-    }
-}
-ul.nav.navbar-nav li {
-  margin: 0 0.5rem;
+.onboarding {
+  display: block;
 }
 
 .onboarding > .navbar {
@@ -100,96 +65,133 @@ ul.nav.navbar-nav li {
 
 .innerContainer {
   /* margin: 20px 0; */
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .home-hero {
   width: 100vw;
-  height: 100vh;
-  /* position: absolute;
-  top: 0;
-  left: 0; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   background-image: url("./images/kiwi.jpg");
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: black;
   z-index: -1;
   text-align: center;
-  padding: 1rem;
-  background-position: center center;
-  background-size: cover;
   color: white;
   text-shadow: 0 0 8px #66757f;
-  margin-top: -20px;
-  margin-bottom: -20px;
+  padding: 100px 0 100px 0;
+  margin: 0;
 }
-#messages {
+
+/*********************************************
+                    <Navbar />
+**********************************************/
+.navbar {
+  min-height: 70px;
+}
+.navbar h1 {
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  color: white;
+}
+.navbar a {
+  font-weight: bold;
+  color: #ff9900;
+}
+.navbar a:hover {
+  color: #ff9900;
+  text-decoration: underline;
+  cursor: pointer;
+}
+@media screen and (min-width: 768px) {
+  .navbar .navbar-brand-centered {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    display: block;
+    /* width: 160px; */
+    text-align: center;
+    /* background-color: #eee; */
+  }
+  .navbar .navbar > .container .navbar-brand-centered,
+.navbar .navbar > .container-fluid .navbar-brand-centered {
+    margin-left: -80px;
+  }
+}
+.navbar ul.nav.navbar-nav li {
+  margin: 0 0.5rem;
+}
+.navbar .navbar-header {
+  margin: 0 auto;
+}
+
+/*********************************************
+              <MessageList />
+**********************************************/
+#messageList #messages {
   width: 90%;
   margin: 0 auto;
 }
-#messages .list-group-item {
+#messageList #messages .list-group-item {
   display: flex;
   align-items: flex-start;
   padding: 7px 20px 12px;
   transition: 250ms background-color;
 }
-
-#messages .reply-item {
+#messageList #messages .reply-item {
   width: 95%;
   align-self: flex-end;
 }
-
-#messages .reply {
+#messageList #messages .reply {
   background-color: #e6ecf0;
   width: 95%;
   align-self: flex-end;
 }
-#messages .reply i.fa-reply {
+#messageList #messages .reply i.fa-reply {
   color: black;
   margin-right: 10px;
   transform: rotate(180deg);
 }
-#messages .reply i.fa-times {
+#messageList #messages .reply i.fa-times {
   color: #666;
   margin: 10px 0px 10px 0px;
   cursor: pointer;
 }
-#messages .reply form {
+#messageList #messages .reply form {
   width: 100%;
 }
-#messages .reply form input {
+#messageList #messages .reply form input {
   width: 77%;
 }
-#messages .reply .form-control {
+#messageList #messages .reply .form-control {
   display: inline;
 }
-
-#messages:not(.no-hover) .list-group-item:hover {
+#messageList #messages:not(.no-hover) .list-group-item:hover {
   background-color: #e6ecf0;
 }
-
-.timeline-image {
+#messageList .timeline-image {
   border-radius: 50px;
   width: 48px;
   height: 48px;
   margin: 2px 30px 10px 10px;
 }
-
-.btn:hover {
+#messageList .btn:hover {
   cursor: pointer;
 }
-
-a.btn.btn-danger,a.btn.btn-success,
-a.btn.btn-danger:hover, a.btn.btn-success:hover {
+#messageList a.btn.btn-danger, #messageList a.btn.btn-success,
+#messageList a.btn.btn-danger:hover, #messageList a.btn.btn-success:hover {
   color: white;
 }
 
-.navbar-header {
-margin: 0 auto;
-}
-
-.messageRefresh {
+/*********************************************
+              <MessageRefresh />
+**********************************************/
+#messageRefresh {
   background-color: #4f4f4f;
   color: #e0e0e0;
   width: 90%;
@@ -198,52 +200,29 @@ margin: 0 auto;
   padding: 10px 0;
 }
 
-#userAsideImg {
+/*********************************************
+              <UserAside />
+**********************************************/
+#userAside {
+  text-align: center;
+}
+#userAside #userAsideImg {
   border-radius: 50%;
   max-width: 150px;
   max-height: 150px;
 }
-aside {
-  /* min-width: 250px; */
-  text-align: center;
-}
-aside h2 {
+#userAside aside h2 {
   color: #0099ff;
   font-size: 1.3rem;
 }
-aside h2:before {
+#userAside aside h2:before {
   content: "@";
   font-size: 1.1rem;
 }
 
-.addMsgFormContainer {
-  width: 80%;
-  margin: 0 auto;
-}
-.addMsgFormContainer label {
-  font-weight: bold;
-}
-#hashtags {
-  text-align: left;
-  border: 0px solid blue;
-}
-#hashtags h3 {
-  color: #0099ff;
-  font-weight: bold;
-  text-align: center;
-}
-#hashtags a {
-  color: #666666;
-}
-#hashtags hr {
-  margin: 8px auto 4px auto;
-  padding: 0;
-  border: 0px solid #c9c9c9;
-  height: 1px;
-  background-color: #CCCCCC;
-  border-collapse: collapse;
-  width: 80%;
-}
+/*********************************************
+              <Footer />
+**********************************************/
 #footer {
   /* margin-top: 10px; */
   background-color: #2e2e2e;
@@ -256,11 +235,6 @@ aside h2:before {
   list-style: none;
   margin: 0;
   padding: 5px;
-}
-#footer #warblerFooterList i {
-  margin-right: 10px;
-  color: #ffffff;
-  min-width: 15px;
 }
 #footer a {
   color: #cc7a00;
@@ -285,6 +259,11 @@ aside h2:before {
   background-color: #595959;
   border-collapse: collapse;
   width: 80%;
+}
+#footer #warblerFooterList i {
+  margin-right: 10px;
+  color: #ffffff;
+  min-width: 15px;
 }
 #footer #topWarblesList {
   width: 100%;
@@ -323,22 +302,82 @@ aside h2:before {
   flex-direction: row;
   align-items: flex-start;
 }
+
 #footerBase {
   background-color: #4f4f4f;
   color: #e0e0e0;
   padding: 10px;
   font-size: 0.85rem;
 }
+
 #aboutPage i {
   font-size: 10rem;
 }
+
 #aboutPage h1 {
   color: #0099ff;
   font-weight: bold;
 }
 
-/** MessageItem styles */
+/** MessageItem */
 .message-item {
   width: 100%;
   position: absolute;
 }
+
+/** AuthForm **/
+#authForm h2 {
+  margin: 7px 0;
+  color: #0099ff;
+}
+
+#authForm button {
+  margin: 7px 0;
+}
+
+#authForm .authform-passwordmask #password {
+  margin-top: 5px;
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+  height: calc(1.5em + .75rem + 2px);
+}
+
+#authForm .authform-passwordmask a {
+  padding: 2px 10px !important;
+}
+
+.addMsgFormContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.addMsgFormContainer label {
+  font-weight: bold;
+}
+
+#hashtags {
+  text-align: left;
+  border: 0px solid blue;
+}
+
+#hashtags h3 {
+  color: #0099ff;
+  font-weight: bold;
+  text-align: center;
+}
+
+#hashtags a {
+  color: #666666;
+}
+
+#hashtags hr {
+  margin: 8px auto 4px auto;
+  padding: 0;
+  border: 0px solid #c9c9c9;
+  height: 1px;
+  background-color: #CCCCCC;
+  border-collapse: collapse;
+  width: 80%;
+}
+
+/*# sourceMappingURL=public.css.map */

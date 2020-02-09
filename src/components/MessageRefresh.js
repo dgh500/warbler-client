@@ -5,7 +5,7 @@ const MessageRefresh = props => {
     color: "white"
   }
   return (
-    <div className="messageRefresh">
+    <div className="messageRefresh" id="messageRefresh">
       ({props.messageCount} New Warbles) <button className="link-button" onClick={props.refreshMessages} style={refreshButtonStyle}>Click to Refresh</button>
     </div>
   );

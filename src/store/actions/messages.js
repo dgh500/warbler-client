@@ -95,11 +95,11 @@ export const fetchMessages = ( id, mode, q='', orderBy='newest', orderDir='desc'
           case 'feed':
           default:
             dispatch(loadMessages(res));
+            dispatch(fetchMessageCount());
+            dispatch(getUserStats());
+            dispatch(fetchHashTags());            
           break;
         }
-        dispatch(fetchMessageCount());
-        dispatch(getUserStats());
-        dispatch(fetchHashTags());
       })
       .catch((err) => {
         dispatch(addError(err.message));

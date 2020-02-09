@@ -114,7 +114,7 @@ class MessageList extends Component {
       )
     });
     return (
-      <div className={styles.outerDiv}>
+      <div className={styles.outerDiv} id="messageList">
         <div>
           {messageRefresh}
           <ul className={styles.outerUlClass} id={styles.outerUlId}>

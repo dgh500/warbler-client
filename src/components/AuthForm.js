@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import PasswordMask from 'react-password-mask';
+
 /**
  * Authorisation form - used for both login and signup
  * If props.signUp is supplied (truthy) then shows full signup form incl username and image URL
@@ -15,6 +17,7 @@ export default class AuthForm extends Component {
       email: '',
       username: '',
       password: '',
+      passwordHidden: true,
       profileImageUrl: '',
       unsubscribe: undefined
     };
@@ -109,21 +112,34 @@ export default class AuthForm extends Component {
     const { heading, buttonText, signUp, errors } = this.props;
 
     return (
-      <div>
+      <div id="authForm">
         <div className="row justify-content-md-center text-center">
           <div className="col-md-6">
             <form onSubmit={this.handleSubmit} encType="multipart/form-data">
               <h2>{heading}</h2>
               {/* Show Errors if they exist */}
               {errors.message && <div className="alert alert-danger">{errors.message}</div>}
-              <label htmlFor="email">Email:</label>
-              <input className="form-control" id="email" name="email" type="text"
+              {/* <label htmlFor="email">Email:</label>*/}
+              <input className="form-control" id="email" name="email" type="text" placeholder="Email Address"
                 onChange={this.handleChange}
                 value={email} />
 
-              <label htmlFor="password">Password:</label>
-              <input className="form-control" id="password" name="password" type="password"
-                onChange={this.handleChange} />
+              {/*<label htmlFor="password">Password:</label>*/}
+              <PasswordMask
+                id="password"
+                name="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleChange.bind(this)}
+                className="authform-passwordmask"
+                />
+          {/*}    <input
+                className="form-control"
+                id="password"
+                name="password"
+                type={this.state.passwordHidden ? "password" : "text"}
+                placeholder="Password"
+                onChange={this.handleChange} />*/}
 
               {/* If signUp form to be rendered then show additional fields */}
               {signUp && (
@@ -138,7 +154,7 @@ export default class AuthForm extends Component {
                     onChange={this.handleFileChange} accept="image/*" />
                   </div>
               )} {/* End if signUp */}
-              <button type="submit" className="btn btn-primary btn-block btn-lg mt-3">
+              <button type="submit" className="btn btn-primary btn-block btn-lg">
                 {buttonText}
               </button>
             </form>
