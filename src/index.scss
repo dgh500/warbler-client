@@ -159,8 +159,18 @@ text-decoration: none;
     align-items: flex-start;
     padding: 7px 20px 12px;
     transition: 250ms background-color;
+    flex-wrap: nowrap;
   }
-
+  #messages .list-group-item form {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+  }
+  #messages .list-group-item form button {
+    margin-left: 8px;
+  }
   #messages .reply-item {
     width: 95%;
     align-self: flex-end;
@@ -213,6 +223,12 @@ text-decoration: none;
 }
 
 /*********************************************
+              <MessageTimeline />
+**********************************************/
+#messageTimeline {
+  padding: 1% 0 1% 0;
+}
+/*********************************************
               <MessageRefresh />
 **********************************************/
 #messageRefresh {
@@ -228,22 +244,73 @@ text-decoration: none;
               <UserAside />
 **********************************************/
 #userAside {
-  text-align: center;
+  padding: 10px;
+
+  aside div#userAsideInner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
 
   #userAsideImg {
+    order: 1;
     border-radius: 50%;
-    max-width: 150px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  #userAsideText {
+    order: 2;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
   }
 
   aside h2 {
     color: $body-header-color;
     font-size: 1.3rem;
+    order: 1;
   }
   aside h2:before {
     content: "@";
     font-size: 1.1rem;
   }
+  .user-stats {
+    border: 0px solid green;
+    order: 2;
+  }
+
+  @media screen and (min-width:768px){
+    aside div#userAsideInner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    #userAsideImg {
+      order: 2;
+      border-radius: 50%;
+      max-width: 150px;
+      max-height: 150px;
+    }
+
+    aside h2 {
+      order: 1;
+      color: $body-header-color;
+      font-size: 1.5rem;
+    }
+    aside h2:before {
+      content: "@";
+      font-size: 1.1rem;
+    }
+
+    .user-stats {
+      border: 0px solid green;
+    }
+  }
+
 }
 
 /*********************************************

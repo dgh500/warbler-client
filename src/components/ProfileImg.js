@@ -9,9 +9,17 @@ import PropTypes from 'prop-types';
  * @param {int} height - Image width ( defaults to match height )
  */
 const ProfileImg = props => {
-  // todo
-  return (
 
+  const { imgSrc, username, width, height, className="img-thumb", id="" } = props;
+
+  return (
+    <img
+      src={imgSrc}
+      alt={username}
+      width={width}
+      height={height}
+      className={className}
+      id={id} />
   );
 }
 

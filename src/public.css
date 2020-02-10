@@ -148,6 +148,17 @@ body {
   align-items: flex-start;
   padding: 7px 20px 12px;
   transition: 250ms background-color;
+  flex-wrap: nowrap;
+}
+#messageList #messages .list-group-item form {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+#messageList #messages .list-group-item form button {
+  margin-left: 8px;
 }
 #messageList #messages .reply-item {
   width: 95%;
@@ -195,6 +206,13 @@ body {
 }
 
 /*********************************************
+              <MessageTimeline />
+**********************************************/
+#messageTimeline {
+  padding: 1% 0 1% 0;
+}
+
+/*********************************************
               <MessageRefresh />
 **********************************************/
 #messageRefresh {
@@ -210,20 +228,64 @@ body {
               <UserAside />
 **********************************************/
 #userAside {
-  text-align: center;
+  padding: 10px;
+}
+#userAside aside div#userAsideInner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
 }
 #userAside #userAsideImg {
+  order: 1;
   border-radius: 50%;
-  max-width: 150px;
-  max-height: 150px;
+  max-width: 100px;
+  max-height: 100px;
+}
+#userAside #userAsideText {
+  order: 2;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 #userAside aside h2 {
   color: #0099ff;
   font-size: 1.3rem;
+  order: 1;
 }
 #userAside aside h2:before {
   content: "@";
   font-size: 1.1rem;
+}
+#userAside .user-stats {
+  border: 0px solid green;
+  order: 2;
+}
+@media screen and (min-width: 768px) {
+  #userAside aside div#userAsideInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #userAside #userAsideImg {
+    order: 2;
+    border-radius: 50%;
+    max-width: 150px;
+    max-height: 150px;
+  }
+  #userAside aside h2 {
+    order: 1;
+    color: #0099ff;
+    font-size: 1.5rem;
+  }
+  #userAside aside h2:before {
+    content: "@";
+    font-size: 1.1rem;
+  }
+  #userAside .user-stats {
+    border: 0px solid green;
+  }
 }
 
 /*********************************************

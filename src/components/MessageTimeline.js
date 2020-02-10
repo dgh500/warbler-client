@@ -7,7 +7,7 @@ import Hashtags from './Hashtags';
 const MessageTimeline = props => {
   return (
     <>
-    <div className="row m-0">
+    <div className="row m-0" id="messageTimeline">
       <UserAside
         profileImageUrl={props.profileImageUrl}
         username={props.username}

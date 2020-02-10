@@ -4,6 +4,7 @@ import md5 from 'md5';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUserStats } from '../store/actions/users';
+import ProfileImg from './ProfileImg';
 
 class UserAside extends Component {
 
@@ -25,18 +26,19 @@ class UserAside extends Component {
         imgSrc = `https://www.gravatar.com/avatar/${userEmailHash}s=200&d=https://localhost:3000/default-profile-image.jpg`;
     }
     return (
-      <div id="userAside" className="col-12 col-sm-2 p-0 m-0">
+      <div id="userAside" className="col-12 col-sm-2">
       <aside>
-        <div className="panel panel-default">
-          <div className="panel-body">
+        <div id="userAsideInner">
+            <ProfileImg
+              imgSrc={imgSrc}
+              username={username}
+              width="150"
+              height="150"
+              className="img-thumb"
+              id="userAsideImg"
+              />
+          <div id="userAsideText">
             <h2>{username}</h2>
-            <img
-            src={imgSrc}
-            alt={username}
-            width="200"
-            height="200"
-            className="img-thumb"
-            id="userAsideImg" />
             {this.props.postCount !== undefined ? (
             <div className="user-stats">
               <strong>Posts:</strong>{this.props.postCount}<br/>

@@ -7,6 +7,7 @@ import SlideToggle from 'react-slide-toggle';
 import DefaultProfileImg from '../images/default-profile-image.jpg';
 import { replyToMessage, removeMessage } from '../store/actions/messages';
 import Hashtag from './Hashtag';
+import ProfileImg from './ProfileImg';
 import UsernameLink from './UsernameLink';
 
 /**
@@ -114,19 +115,18 @@ class MessageItem extends Component {
     return (
       <>
       <li className={isReply ? `${styles.outerLi} reply-item` : styles.outerLi}>
-        <img
-          src={profileImageUrl && profileImageUrl.length > 1 ? `http://localhost:8081/images/${profileImageUrl}` : DefaultProfileImg}
-          alt={username}
-          height="100"
-          width="100"
-          className={styles.profileImg} />
+        <ProfileImg
+          imgSrc={profileImageUrl && profileImageUrl.length > 1 ? `http://localhost:8081/images/${profileImageUrl}` : DefaultProfileImg}
+          username={username}
+          width="48"
+          height="48"
+          className={styles.profileImg}
+          />
           <div className={styles.messageContainer}>
             <UsernameLink username={username} />&nbsp;
-            <span className="text-muted">
               <Moment className="text-muted" format="ddd Do MMM [']YY [@] HH[:]ma">
                 {date}
               </Moment>
-            </span>
             <p>{modifiedText}</p>
             {displayMode === "feed" && isCorrectUser &&
               <>
@@ -152,7 +152,7 @@ class MessageItem extends Component {
               value={this.state.replyMessage}
               onChange={e => this.setState({ replyMessage: e.target.value })}
               />
-              <button className="btn btn-sm btn-primary ml-2 mb-1">
+              <button className="btn btn-sm btn-primary">
               Reply
               </button>
           </form>
