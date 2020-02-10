@@ -60,28 +60,28 @@ class MessageItem extends Component {
     const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply, displayMode, styles } = this.props;
     const { /*replyMode, */toggleSwitch } = this.state;
     const deleteButtonStyle = {
-      border: "0px",
+      // border: "0px",
       background: "none",
       color: "#666",
-      position: "absolute",
-      bottom: "0",
-      right: "60px"
+      // position: "absolute",
+      // bottom: "0",
+      // right: "60px"
     }
     const editButtonStyle = {
-      border: "0px",
+      // border: "0px",
       background: "none",
       color: "#666",
-      position: "absolute",
-      bottom: "2px",
-      right: "35px"
+      // position: "absolute",
+      // bottom: "2px",
+      // right: "35px"
     }
     const replyButtonStyle = {
-      border: "0px",
+      // border: "0px",
       background: "none",
       color: "#666",
-      position: "absolute",
-      bottom: "0",
-      right: "3px",
+      // position: "absolute",
+      // bottom: "0",
+      // right: "3px",
       transform: "scaleX(-1) rotate(180deg)"
     }
     // console.log(this);
@@ -128,15 +128,18 @@ class MessageItem extends Component {
                 {date}
               </Moment>
             <p>{modifiedText}</p>
+            <div className="messageItemIconContainer">
             {displayMode === "feed" && isCorrectUser &&
               <>
-              <button onClick={this.handleDelete} style={deleteButtonStyle}><i className="fas fa-trash-alt"></i></button>
-                <Link to={`/editMessage/${messageId}`} style={editButtonStyle}><i className="fas fa-edit"></i></Link>
+              <div><button onClick={this.handleDelete} style={deleteButtonStyle}><i className="fas fa-trash-alt"></i></button></div>
+              <div><Link to={`/editMessage/${messageId}`} style={editButtonStyle}><i className="fas fa-edit"></i></Link></div>
               </>
             }
             {displayMode === "feed" && !isReply &&
-              <button onClick={this.replyToggle} style={replyButtonStyle} className="ml-1 toggle"><i className="fas fa-reply"></i></button>
+              <div><button onClick={this.replyToggle} style={replyButtonStyle} className="toggle">
+              <i className="fas fa-reply"></i></button></div>
             }
+            </div>
           </div>
         </li>
 

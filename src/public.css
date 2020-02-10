@@ -164,6 +164,30 @@ body {
   width: 95%;
   align-self: flex-end;
 }
+#messageList .messageItemIconContainer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  border: 0px solid green;
+}
+#messageList .messageItemIconContainer > div {
+  border: 0px solid blue;
+}
+#messageList .messageItemIconContainer > div > button {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 30px;
+  height: 24px;
+  text-align: center;
+}
+#messageList .messageItemIconContainer > div .fa-edit {
+  text-align: center;
+  width: 30px;
+  height: 24px;
+  margin-right: -5px;
+}
 #messageList #messages .reply {
   background-color: #e6ecf0;
   width: 95%;
@@ -381,13 +405,21 @@ body {
 /*********************************************
               <About />
 **********************************************/
-#aboutPage i {
+#about {
+  padding: 10%;
+}
+#about i {
   font-size: 10rem;
 }
-
-#aboutPage h1 {
+#about h1 {
   color: #0099ff;
   font-weight: bold;
+  text-align: center;
+}
+@media screen and (min-width: 768px) {
+  #about {
+    padding: 5% 10%;
+  }
 }
 
 /*********************************************
@@ -403,7 +435,7 @@ body {
               <AuthForm />
 **********************************************/
 #authForm {
-  padding: 3% 8% 4% 8%;
+  padding: 10%;
 }
 #authForm h2 {
   margin: 0px 0px 7px 0px;
@@ -420,6 +452,11 @@ body {
 }
 #authForm .authform-passwordmask a {
   padding: 2px 10px !important;
+}
+@media screen and (min-width: 768px) {
+  #authForm {
+    padding: 5% 10%;
+  }
 }
 
 /*********************************************

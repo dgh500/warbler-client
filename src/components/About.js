@@ -6,11 +6,11 @@ import React from 'react';
 const About = () => {
   return (
     <>
-    <div id="aboutPage" className="row">
-      <div className="col-4 text-center">
+    <div id="about" className="row">
+      <div className="col-12 col-md-4 text-center">
         <i className="fas fa-kiwi-bird"></i>
       </div>
-      <div className="col-8">
+      <div className="col-12 col-md-8">
         <h1>ABOUT WARBLER</h1>
         <p>Warbler is a toy project for me to experiment with JavaScript, React & Redux. Starting from the end project of the <a href="https://www.udemy.com/course/the-advanced-web-developer-bootcamp/">Advanced Web Developer Bootcamp</a> the following features have been added.</p>
         <ul>

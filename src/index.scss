@@ -1,6 +1,8 @@
 $body-header-color: #0099ff;
 $nav-foot-header-color: #ff9900;
 $background-color: #e6ecf0;
+$innerPagePaddingMobile: 10%;
+$innerPagePaddingDesktop: 5% 10%;
 
 /*********************************************
     GENERAL (NON COMPONENT SPECIFIC) STYLES
@@ -176,6 +178,31 @@ text-decoration: none;
     align-self: flex-end;
   }
 
+  .messageItemIconContainer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    border: 0px solid green;
+  }
+
+  .messageItemIconContainer > div {
+    border: 0px solid blue;
+  }
+  .messageItemIconContainer > div > button {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    width: 30px;
+    height: 24px;
+    text-align: center;
+  }
+  .messageItemIconContainer > div .fa-edit {
+    text-align: center;
+    width: 30px;
+    height: 24px;
+    margin-right: -5px;
+  }
   #messages .reply {
     background-color: $background-color;
     width: 95%;
@@ -418,12 +445,21 @@ text-decoration: none;
 /*********************************************
               <About />
 **********************************************/
-#aboutPage i {
-  font-size: 10rem;
-}
-#aboutPage h1 {
-  color: $body-header-color;
-  font-weight: bold;
+#about {
+  padding: $innerPagePaddingMobile;
+
+  i {
+    font-size: 10rem;
+  }
+  h1 {
+    color: $body-header-color;
+    font-weight: bold;
+    text-align: center;
+  }
+  @media screen and (min-width:768px){
+    padding: $innerPagePaddingDesktop;
+  }
+
 }
 
 /*********************************************
@@ -439,7 +475,8 @@ text-decoration: none;
               <AuthForm />
 **********************************************/
 #authForm {
-  padding: 3% 8% 4% 8%;
+  // padding: 3% 8% 4% 8%;
+  padding: $innerPagePaddingMobile;
   h2 {
     margin: 0px 0px 7px 0px;
     color: $body-header-color;
@@ -455,6 +492,9 @@ text-decoration: none;
   }
   .authform-passwordmask a {
     padding: 2px 10px !important;
+  }
+  @media screen and (min-width:768px){
+    padding: $innerPagePaddingDesktop;
   }
 }
 
