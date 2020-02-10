@@ -57,7 +57,7 @@ class MessageItem extends Component {
 
   // Main render message
   render() {
-    const { date, profileImageUrl, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply, displayMode, styles } = this.props;
+    const { date, profileImageUrl, email, text, username, removeMessage, isCorrectUser, currentUser, messageId, replies, isReply, displayMode, styles } = this.props;
     const { /*replyMode, */toggleSwitch } = this.state;
     const deleteButtonStyle = {
       // border: "0px",
@@ -95,6 +95,7 @@ class MessageItem extends Component {
           text={m.text}
           username={m.user.username}
           currentUser={m.user._id}
+          email={m.user.email}
           profileImageUrl={m.user.profileImageUrl}
           removeMessage={removeMessage.bind(this, m.user._id, m._id)}
           messageId={m._id}
@@ -116,8 +117,9 @@ class MessageItem extends Component {
       <>
       <li className={isReply ? `${styles.outerLi} reply-item` : styles.outerLi}>
         <ProfileImg
-          imgSrc={profileImageUrl && profileImageUrl.length > 1 ? `http://localhost:8081/images/${profileImageUrl}` : DefaultProfileImg}
+          profileImgUrl={profileImageUrl}
           username={username}
+          email={email}
           width="48"
           height="48"
           className={styles.profileImg}

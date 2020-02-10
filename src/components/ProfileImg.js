@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import md5 from 'md5';
 
 /**
  * Renders the user's profile image from their username
@@ -10,8 +11,14 @@ import PropTypes from 'prop-types';
  */
 const ProfileImg = props => {
 
-  const { imgSrc, username, width, height, className="img-thumb", id="" } = props;
-
+  const { profileImgUrl=null, username, email="", width, height, className="img-thumb", id="" } = props;
+  let imgSrc;
+  if(profileImgUrl.length > 1) {
+    imgSrc = `https://localhost:8081/images/${profileImgUrl}`;
+  } else {
+    const userEmailHash = md5(email);
+    imgSrc = `https://www.gravatar.com/avatar/${userEmailHash}s=200&d=https://localhost:3000/default-profile-image.jpg`;
+  }
   return (
     <img
       src={imgSrc}

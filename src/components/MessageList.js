@@ -103,6 +103,7 @@ class MessageList extends Component {
         text={m.text}
         username={m.user.username}
         profileImageUrl={m.user.profileImageUrl}
+        email={m.user.email}
         removeMessage={(m) => removeMessage(m.user._id, m._id)}
         messageId={m._id}
         replies={replies}

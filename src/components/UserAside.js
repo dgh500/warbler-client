@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import DefaultProfileImg from '../images/default-profile-image.jpg';
-import md5 from 'md5';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUserStats } from '../store/actions/users';
@@ -18,20 +16,14 @@ class UserAside extends Component {
 
   render() {
     const { username, profileImageUrl, email } = this.props.currentUser.user;
-    let imgSrc;
-    if(profileImageUrl.length > 1) {
-      imgSrc = `http://localhost:8081/images/${profileImageUrl}`;
-    } else {
-        const userEmailHash = md5(email);
-        imgSrc = `https://www.gravatar.com/avatar/${userEmailHash}s=200&d=https://localhost:3000/default-profile-image.jpg`;
-    }
     return (
       <div id="userAside" className="col-12 col-sm-2">
       <aside>
         <div id="userAsideInner">
             <ProfileImg
-              imgSrc={imgSrc}
+              profileImgUrl={profileImageUrl}
               username={username}
+              email={email}
               width="150"
               height="150"
               className="img-thumb"

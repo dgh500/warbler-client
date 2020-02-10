@@ -170,6 +170,7 @@ body {
   bottom: 0;
   display: flex;
   border: 0px solid green;
+  padding-right: 8px;
 }
 #messageList .messageItemIconContainer > div {
   border: 0px solid blue;

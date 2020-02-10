@@ -97,7 +97,7 @@ export const fetchMessages = ( id, mode, q='', orderBy='newest', orderDir='desc'
             dispatch(loadMessages(res));
             dispatch(fetchMessageCount());
             dispatch(getUserStats());
-            dispatch(fetchHashTags());            
+            dispatch(fetchHashTags());
           break;
         }
       })
