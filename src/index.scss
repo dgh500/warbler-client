@@ -113,8 +113,18 @@ text-decoration: none;
     text-decoration: underline;
     cursor: pointer;
   }
+  ul.nav.navbar-nav li {
+    margin: 0 0.5rem;
+    // border: 1px solid white;
+    width: 100%;
+    text-align: right;
+  }
 
   @media screen and (min-width:768px){
+    ul.nav.navbar-nav li {
+      width: inherit;
+      text-align: inherit;
+    }
       .navbar-brand-centered {
           position: absolute;
           left: 50%;
@@ -128,10 +138,6 @@ text-decoration: none;
       .navbar>.container-fluid .navbar-brand-centered {
           margin-left: -80px;
       }
-  }
-
-  ul.nav.navbar-nav li {
-    margin: 0 0.5rem;
   }
 
   .navbar-header {
@@ -335,13 +341,16 @@ text-decoration: none;
     align-items: flex-start;
   }
 }
-
 #footerBase {
   background-color: #4f4f4f;
   color: #e0e0e0;
   padding: 10px;
   font-size: 0.85rem;
 }
+
+/*********************************************
+              <About />
+**********************************************/
 #aboutPage i {
   font-size: 10rem;
 }
@@ -350,54 +359,71 @@ text-decoration: none;
   font-weight: bold;
 }
 
+/*********************************************
+              <MessageItem />
+**********************************************/
 /** MessageItem */
 .message-item {
   width: 100%;
   position: absolute;
 }
-/** AuthForm **/
-#authForm h2 {
-  margin: 7px 0;
-  color: $body-header-color;
-}
-#authForm button {
-  margin: 7px 0;
-}
-#authForm .authform-passwordmask #password {
-  margin-top: 5px;
-  padding: .375rem .75rem;
-  line-height: 1.5;
-  height: calc(1.5em + .75rem + 2px);
-}
-#authForm .authform-passwordmask a {
-  padding: 2px 10px !important;
+
+/*********************************************
+              <AuthForm />
+**********************************************/
+#authForm {
+  padding: 3% 8% 4% 8%;
+  h2 {
+    margin: 0px 0px 7px 0px;
+    color: $body-header-color;
+  }
+  button {
+    margin: 7px 0;
+  }
+  .authform-passwordmask #password {
+    margin-top: 5px;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    height: calc(1.5em + .75rem + 2px);
+  }
+  .authform-passwordmask a {
+    padding: 2px 10px !important;
+  }
 }
 
+/*********************************************
+              <Hashtags />
+**********************************************/
+#hashtags {
+  text-align: left;
+  border: 0px solid blue;
+
+  h3 {
+    color: $body-header-color;
+    font-weight: bold;
+    text-align: center;
+  }
+  a {
+    color: #666666;
+  }
+  hr {
+    margin: 8px auto 4px auto;
+    padding: 0;
+    border: 0px solid #c9c9c9;
+    height: 1px;
+    background-color: #CCCCCC;
+    border-collapse: collapse;
+    width: 80%;
+  }
+}
+
+/*********************************************
+              <MessageForm />
+**********************************************/
 .addMsgFormContainer {
   width: 80%;
   margin: 0 auto;
 }
 .addMsgFormContainer label {
   font-weight: bold;
-}
-#hashtags {
-  text-align: left;
-  border: 0px solid blue;
-}
-#hashtags h3 {
-  color: $body-header-color;
-  font-weight: bold;
-  text-align: center;
-}
-#hashtags a {
-  color: #666666;
-}
-#hashtags hr {
-  margin: 8px auto 4px auto;
-  padding: 0;
-  border: 0px solid #c9c9c9;
-  height: 1px;
-  background-color: #CCCCCC;
-  border-collapse: collapse;
-  width: 80%;
 }

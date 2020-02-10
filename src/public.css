@@ -108,7 +108,16 @@ body {
   text-decoration: underline;
   cursor: pointer;
 }
+.navbar ul.nav.navbar-nav li {
+  margin: 0 0.5rem;
+  width: 100%;
+  text-align: right;
+}
 @media screen and (min-width: 768px) {
+  .navbar ul.nav.navbar-nav li {
+    width: inherit;
+    text-align: inherit;
+  }
   .navbar .navbar-brand-centered {
     position: absolute;
     left: 50%;
@@ -122,9 +131,6 @@ body {
 .navbar .navbar > .container-fluid .navbar-brand-centered {
     margin-left: -80px;
   }
-}
-.navbar ul.nav.navbar-nav li {
-  margin: 0 0.5rem;
 }
 .navbar .navbar-header {
   margin: 0 auto;
@@ -310,6 +316,9 @@ body {
   font-size: 0.85rem;
 }
 
+/*********************************************
+              <About />
+**********************************************/
 #aboutPage i {
   font-size: 10rem;
 }
@@ -319,57 +328,53 @@ body {
   font-weight: bold;
 }
 
+/*********************************************
+              <MessageItem />
+**********************************************/
 /** MessageItem */
 .message-item {
   width: 100%;
   position: absolute;
 }
 
-/** AuthForm **/
+/*********************************************
+              <AuthForm />
+**********************************************/
+#authForm {
+  padding: 3% 8% 4% 8%;
+}
 #authForm h2 {
-  margin: 7px 0;
+  margin: 0px 0px 7px 0px;
   color: #0099ff;
 }
-
 #authForm button {
   margin: 7px 0;
 }
-
 #authForm .authform-passwordmask #password {
   margin-top: 5px;
   padding: 0.375rem 0.75rem;
   line-height: 1.5;
   height: calc(1.5em + .75rem + 2px);
 }
-
 #authForm .authform-passwordmask a {
   padding: 2px 10px !important;
 }
 
-.addMsgFormContainer {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.addMsgFormContainer label {
-  font-weight: bold;
-}
-
+/*********************************************
+              <Hashtags />
+**********************************************/
 #hashtags {
   text-align: left;
   border: 0px solid blue;
 }
-
 #hashtags h3 {
   color: #0099ff;
   font-weight: bold;
   text-align: center;
 }
-
 #hashtags a {
   color: #666666;
 }
-
 #hashtags hr {
   margin: 8px auto 4px auto;
   padding: 0;
@@ -378,6 +383,18 @@ body {
   background-color: #CCCCCC;
   border-collapse: collapse;
   width: 80%;
+}
+
+/*********************************************
+              <MessageForm />
+**********************************************/
+.addMsgFormContainer {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.addMsgFormContainer label {
+  font-weight: bold;
 }
 
 /*# sourceMappingURL=public.css.map */

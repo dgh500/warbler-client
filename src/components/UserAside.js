@@ -25,7 +25,7 @@ class UserAside extends Component {
         imgSrc = `https://www.gravatar.com/avatar/${userEmailHash}s=200&d=https://localhost:3000/default-profile-image.jpg`;
     }
     return (
-      <div id="userAside" className="col-sm-2 p-0 m-0">
+      <div id="userAside" className="col-12 col-sm-2 p-0 m-0">
       <aside>
         <div className="panel panel-default">
           <div className="panel-body">

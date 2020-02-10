@@ -133,13 +133,6 @@ export default class AuthForm extends Component {
                 onChange={this.handleChange.bind(this)}
                 className="authform-passwordmask"
                 />
-          {/*}    <input
-                className="form-control"
-                id="password"
-                name="password"
-                type={this.state.passwordHidden ? "password" : "text"}
-                placeholder="Password"
-                onChange={this.handleChange} />*/}
 
               {/* If signUp form to be rendered then show additional fields */}
               {signUp && (

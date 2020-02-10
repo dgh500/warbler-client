@@ -131,7 +131,7 @@ class MessageList extends Component {
  */
 MessageList.defaultProps = {
   styles: {
-    outerDiv: "col-sm-8 p-0 m-0",
+    outerDiv: "col-12 col-sm-8 p-0 m-0",
     outerUlClass: "list-group",
     outerUlId: "messages",
     outerLi: 'list-group-item',

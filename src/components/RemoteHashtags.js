@@ -23,7 +23,7 @@ class RemoteHashtags extends Component {
 
   componentDidUpdate() {
     if(this.props.isGeolocationAvailable === true && this.props.isGeolocationEnabled === true && this.props.coords !== null && this.state.remoteLoaded === false) {
-        apiCall('get',`http://localhost:8081/api/twitter/lookup/${this.props.coords.latitude}/${this.props.coords.longitude}`)
+        apiCall('get',`${process.env.REACT_APP_HASHTAG_TWITTER_LOOKUP_PREFIX}/${this.props.coords.latitude}/${this.props.coords.longitude}`)
         .then((res) => {
             this.setState({woeid: res.woeid, location: res.name});
             this.props.getTwitterHashtags(this.state.woeid).then(this.setState({remoteLoaded: true}));
